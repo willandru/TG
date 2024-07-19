@@ -1,0 +1,22 @@
+
+Verifica la versión de Python:
+python --version
+
+Verifica que el Python es de 32 o 64 bits:
+python -c "import struct; print(struct.calcsize('P') * 8)"
+
+Remueve un ambiente existente: 
+Remove-Item -Recurse -Force C:\Users\willi\ENVS\env_py_x32
+
+Crea un nuevo ambiente de 32 bits:
+py -3.12-32 -m venv C:\Users\willi\ENVS\env_py_x32
+
+Activa el nuevo ambiente en cmd (no powershell):
+C:\Users\willi\ENVS\env_py_x32\Scripts\activate
+
+
+1. Correr el servidor que envia los datos desde python x64 (3.6.3)
+2. Correr el archivo del cliente en x32 bits para recivir datos.
+
+
+- Revisar el Ejemplo de 'Sumar dos numeros' para verificar la comunicacion entre Python x32 y Labview x32.
