@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2024-07-25" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3309" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2024-07-27" view-index="0" gantt-divider-location="494" resource-divider-location="300" version="3.3.3309" locale="en_US">
     <description/>
     <view zooming-state="default:2" id="gantt-chart">
-        <field id="tpd3" name="Name" width="200" order="0"/>
-        <field id="tpd4" name="Begin date" width="75" order="1"/>
-        <field id="tpd5" name="End date" width="75" order="2"/>
+        <field id="tpd3" name="Name" width="281" order="0"/>
+        <field id="tpd4" name="Begin date" width="105" order="1"/>
+        <field id="tpd5" name="End date" width="107" order="2"/>
         <field id="tpd15" name="Notes" width="20" order="3"/>
         <option id="filter.completedTasks" value="false"/>
         <option id="filter.dueTodayTasks" value="false"/>
         <option id="filter.overdueTasks" value="false"/>
         <option id="filter.inProgressTodayTasks" value="false"/>
-        <option id="color.recent"><![CDATA[#ff9999 #000000 #cc0000 #999900]]></option>
+        <option id="color.recent"><![CDATA[#ffcc00 #6666ff #339900 #cc0099 #000000 #ff0033 #66ff66 #ffff33 #ff9900 #ffff00]]></option>
     </view>
     <view id="resource-table">
         <field id="0" name="Name" width="210" order="0"/>
@@ -39,11 +39,47 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" uid="1c420871300648b0b244b9327fc8dad0" name="Informe 9 Pupilometria IR" color="#999900" meeting="false" start="2024-07-25" duration="2" complete="0" expand="true"/>
-        <task id="1" uid="6d0b2e7e3841497d895a0c2006622ed3" name="Informe 10 Adquisiscion" color="#cc0000" meeting="false" start="2024-07-25" duration="2" complete="0" expand="true"/>
-        <task id="4" uid="4eb8c21899634d5db8b8ea62e954cdb5" name="Informe 11 Procesamiento" meeting="false" start="2024-07-25" duration="2" complete="0" expand="true"/>
-        <task id="2" uid="7f5df6a049b246939bcfa6c77458f174" name="Informe 12 Diametro pupila" color="#000000" meeting="false" start="2024-07-25" duration="2" complete="0" expand="true"/>
-        <task id="3" uid="a4789f27e281434facbb6215f4fcd35a" name="Informe 13 Conteo Parpadepos" color="#ff9999" meeting="false" start="2024-07-26" duration="2" complete="0" expand="true"/>
+        <task id="0" uid="1c420871300648b0b244b9327fc8dad0" name="Informe 9 Pupilometria IR" color="#ffff33" meeting="false" start="2024-07-25" duration="6" complete="0" expand="true">
+            <depend id="11" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="1" uid="6d0b2e7e3841497d895a0c2006622ed3" name="Informe 10 Adquisiscion EMG" color="#cc0000" meeting="false" start="2024-08-07" duration="4" complete="0" expand="true">
+            <notes><![CDATA[gtec->python->labview
+
+Adquisicion y comunicaciond e la señal
+
+]]></notes>
+        </task>
+        <task id="4" uid="4eb8c21899634d5db8b8ea62e954cdb5" name="Informe 11 Procesamiento LabVIEW" meeting="false" start="2024-08-09" duration="7" complete="0" expand="true">
+            <notes><![CDATA[-Clasificacion de la señal
+-Control de los lentes]]></notes>
+        </task>
+        <task id="11" uid="ce0bf94de88e4d5ba2070cb8a72387a7" name="Informe - Diametro y Parpadeos" color="#66ff66" meeting="false" start="2024-08-02" duration="5" complete="0" expand="true"/>
+        <task id="5" uid="8c808f9b46e1434597b8aa0e3e8f47a1" name="Instalar g-tec" color="#ffff00" meeting="false" start="2024-07-30" duration="2" complete="0" expand="true"/>
+        <task id="6" uid="11baa46e300146edac7223b28891a827" name="Ponerlo a funcionar" color="#ff9900" meeting="false" start="2024-07-31" duration="1" complete="0" expand="true">
+            <notes><![CDATA[Tareas:
+
+- Correr los ejecutables de python para g-tec. Conectando g-tc via USB al computador, comprobar que funcionen.
+
+- Corrrer la interfaz de labview y adquirir la señal EMG de gtec correctamente.
+
+]]></notes>
+        </task>
+        <task id="7" uid="0611f7252de44083bb873713f3ec5d2c" name="Arreglar señal de control" color="#ff0033" meeting="false" start="2024-08-01" duration="8" complete="0" expand="true">
+            <notes><![CDATA[Tareas:
+
+1. Verificar el codigo y entenderlo bien, hablar con el director para entender mejor el problema.
+2. Buscar las posibles soluciones
+3. Solucionarlo]]></notes>
+        </task>
+        <task id="8" uid="e97b940716b64e9293db4f5f439cde15" name="Pupilometria IR - poner a func." meeting="false" start="2024-08-02" duration="2" complete="0" expand="true"/>
+        <task id="9" uid="c7c9108874154d038b10bd7c42f96702" name="Diametro - algoritmo" meeting="false" start="2024-08-05" duration="8" complete="0" expand="true"/>
+        <task id="10" uid="7d6a63e9570941258eb8c79acc8102a4" name="Parpadeos - algoritmo" meeting="false" start="2024-08-07" duration="8" complete="0" expand="true"/>
+        <task id="12" uid="9a9a2f6fddb8426cbac4e148f2e1aea0" name="Pruebas con el sistama funcionando" color="#000000" meeting="false" start="2024-08-08" duration="4" complete="0" expand="true"/>
+        <task id="13" uid="444d87192ceb4946a5dd6fbe7e43834f" name="DoE : Diseñar el experimento - MO" color="#cc0099" meeting="false" start="2024-08-14" duration="1" complete="0" expand="true"/>
+        <task id="14" uid="b75a78a45a844886bd0560760d03ea20" name="Ideas - Planeacion" color="#339900" meeting="false" start="2024-08-15" duration="4" complete="0" expand="true"/>
+        <task id="15" uid="db1f2c5313464934b54bc29ff232734b" name="Diseño experimento" meeting="false" start="2024-08-19" duration="5" complete="0" expand="true"/>
+        <task id="16" uid="20dd0005dca344989db7314cb28d7a73" name="Primeros 3 participantes" color="#ffcc00" meeting="false" start="2024-08-21" duration="8" complete="0" expand="true"/>
+        <task id="17" uid="36488e5df73747788e2ecaf1d2b319fa" name="Siguientes 3 participantes" color="#ffcc00" meeting="false" start="2024-08-30" duration="6" complete="0" expand="true"/>
     </tasks>
     <resources/>
     <allocations/>
