@@ -1,0 +1,5 @@
+Windows Powershell:
+
+Get-WmiObject Win32_SerialPort | Select-Object DeviceID, Description
+
+// Este comando aplciado en la terminal de comandos de windows powershell muestra los COMs usados por los lentes OPTOTUNE
