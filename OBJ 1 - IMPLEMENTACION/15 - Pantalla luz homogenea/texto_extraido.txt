@@ -1,0 +1,1723 @@
+Capítulo 3
+Experimentos con un solo
+factor (análisis de varianza)
+Sumario
+■
+Diseño completamente al azar y ANOVA
+■
+Comparaciones o pruebas de rango múltiples
+■
+Verificación de los supuestos del modelo
+■
+Elección del tamaño de la muestra
+■
+Uso de software computacional
+Objetivos
+de aprendizaje
+Explicar los elementos de los diseños completamente al
+azar y el análisis de varianza; asimismo, conocer la
+importancia del tamaño de la muestra.
+Describir las diversas pruebas de rangos múltiples y la
+comparación por contrastes.
+Realizar la verificación de los supuestos del modelo.
+www.FreeLibros.org
+GGuuttiieerrrreezz--0033..iinndddd 6600 1122//1100//0077 1100::0088::1199Mapa conceptual
+ANOVA
+Diagramas
+DCA
+de cajas
+Gráficas de
+medias
+LSD
+Experimentos con
+un solo factor
+Pruebas de
+rangos Tukey
+múltiples
+Contraste
+Normalidad
+Verificación de
+Varianza
+los supuestos
+constante
+del modelo
+Tamaño de la
+muestra
+Independencia
+www.FreeLibros.org
+GGuuttiieerrrreezz--0033..iinndddd 6611 1122//1100//0077 1100::0088::220062 CAPÍTULO 3 Experimentos con un solo factor (análisis de varianza)
+En el capítulo anterior vimos los métodos para comparar dos tratamientos o condi-
+Conceptos clave
+ciones (poblaciones o procesos). En este capítulo, aunque se sigue considerando un
+• Análisis de varianza
+solo factor, se presentan los diseños experimentales que se utilizan cuando el objeti-
+• Contraste
+vo es comparar más de dos tratamientos. Puede ser de interés comparar tres o más
+• Contrastes ortogonales
+• Cuadrados medios máquinas, varios proveedores, cuatro procesos, tres materiales, cinco dosis de un
+• Diagramas de cajas fármaco, etcétera.
+• Diferencia mínima significati- Es obvio que, al hacer tales comparaciones, existe un interés y un objetivo cla-
+va (LSD)
+ro. Por ejemplo, una comparación de cuatro dietas de alimentación en la que se uti-
+• Diseño balanceado
+lizan ratas de laboratorio, se hace con el fin de estudiar si alguna nueva dieta que se
+• Gráfica de probabilidad en
+propone es mejor o igual que las ya existentes; en este caso, la variable de interés es
+papel normal
+• Método de Sheffé el peso promedio alcanzado por cada grupo de animales después de ser alimentado
+• Métodos de comparaciones con la dieta que le tocó.
+múltiples Por lo general, el interés del experimentador está centrado en comparar los
+• Modelo de efectos fijos
+tratamientos en cuanto a sus medias poblacionales, sin olvidar que también es impor-
+• Notación de puntos
+tante compararlos con respecto a sus varianzas. Así, desde el punto de vista estadís-
+• Residuos
+tico, la hipótesis fundamental a probar cuando se comparan varios tratamientos es:
+• Tabla de análisis de varianza
+• Tratamiento control
+H : m = m = … = m = m
+• Varianza constante 0 1 2 k
+(3.1)
+H : m π m para algún iπ j
+A i j
+con la cual se quiere decidir si los tratamientos son iguales estadísticamente en cuan-
+to a sus medias, frente a la alternativa de que al menos dos de ellos son diferentes. La
+estrategia natural para resolver este problema es obtener una muestra representativa
+de mediciones en cada uno de los tratamientos, y construir un estadístico de prueba
+para decidir el resultado de dicha comparación.
+Se podría pensar que una forma de probar la hipótesis nula de la expresión (3.1)
+es mediante pruebas T de Student aplicadas a todos los posibles pares de medias; sin
+embargo, esta manera de proceder incrementaría de manera considerable el error
+tipo I (rechazar H siendo verdadera). Por ejemplo, supongamos que se desea probar
+0
+la igualdad de cuatro medias a través de pruebas T de Student. En este caso se tienen
+seis posibles pares de medias, y si la probabilidad de aceptar la hipótesis nula para
+cada prueba individual es de 1 – a = 0.95, entonces la probabilidad de aceptar las seis
+hipótesis nulas es de 0.956 = 0.73, lo cual representa un aumento considerable del
+error tipo I. Aunque se utilice un nivel de confianza tal que (1 – a)6 = 0.95, el proce-
+dimiento resulta inapropiado porque se pueden producir sesgos por parte del experi-
+mentador. Por otra parte, existe un método capaz de probar la hipótesis de igualdad
+de las k medias con un solo estadístico de prueba, éste es el denominado análisis de
+varianza, el cual se estudiará más adelante.
+Diseño completamente al azar y ANOVA
+Muchas comparaciones, como las antes mencionadas, se hacen con base en el diseño
+completamente al azar (DCA), que es el más simple de todos los diseños que se uti-
+lizan para comparar dos o más tratamientos, dado que sólo consideran dos fuentes de
+variabilidad: los tratamientos y el error aleatorio. En el siguiente capítulo veremos
+www.FreeLibros.org
+diseños que consideran la influencia de otras fuentes de variabilidad (bloques).
+GGuuttiieerrrreezz--0033..iinndddd 6622 1122//1100//0077 1100::0088::2200Diseño completamente al azar y ANOVA 63
+Este diseño se llama completamente al azar porque todas las corridas experi-
+mentales se realizan en orden aleatorio completo. De esta manera, si durante el estu-
+dio se hacen en total N pruebas, éstas se corren al azar, de manera que los posibles
+efectos ambientales y temporales se vayan repartiendo equitativamente entre los tra-
+tamientos.
+Ejemplo 3.1
+Comparación de cuatro métodos de ensamble. Un equipo de mejora investiga
+el efecto de cuatro métodos de ensamble A, B, C y D, sobre el tiempo de ensamble en
+minutos. En primera instancia, la estrategia experimental es aplicar cuatro veces los
+cuatro métodos de ensamble en orden completamente aleatorio (las 16 pruebas en
+orden aleatorio). Los tiempos de ensamble obtenidos se muestran en la tabla 3.1. Si
+se usa el diseño completamente al azar (DCA), se supone que, además del método de
+ensamble, no existe ningún otro factor que influya de manera significativa sobre
+la variable de respuesta (tiempo de ensamble).
+Más adelante veremos cómo investigar si las diferencias muestrales de la tabla
+3.1 garantizan diferencias entre los métodos.
+Ejemplo 3.2
+Comparación de cuatro tipos de cuero. Un fabricante de calzado desea mejorar
+la calidad de las suelas, las cuales se pueden hacer con uno de los cuatro tipos de
+cuero A, B, C y D disponibles en el mercado. Para ello, prueba los cueros con una
+máquina que hace pasar los zapatos por una superficie abrasiva; la suela de éstos se
+desgasta al pasarla por dicha superficie. Como criterio de desgaste se usa la pérdida
+de peso después de un número fijo de ciclos. Se prueban en orden aleatorio 24 zapa-
+tos, seis de cada tipo de cuero. Al hacer las pruebas en orden completamente al azar
+se evitan sesgos y las mediciones en un tipo de cuero resultan independientes de las
+demás. Los datos (en miligramos) sobre el desgaste de cada tipo de cuero se mues-
+tran en la tabla 3.2.
+Tabla 3.1 Diseño completamente al azar, ejemplo 3.1.
+Método de ensamble
+A B C D
+6 7 11 10
+8 9 16 12
+7 10 11 11
+8 8 13 9
+Tabla 3.2 Comparación de cuatro tipos de cuero (cuatro tratamientos).
+Tipo de cuero Observaciones Promedio
+A 264 260 258 241 262 255 256.7
+B 208 220 216 200 213 206 209.8
+wwCw2.20 F263 r2e19 e225 L230 i22b8 23r0.8 os.org
+D 217 226 215 227 220 222 220.7
+GGuuttiieerrrreezz--0033..iinndddd 6633 1122//1100//0077 1100::0088::220064 CAPÍTULO 3 Experimentos con un solo factor (análisis de varianza)
+Tabla 3.3 Diseño completamente al azar.
+Tratamientos
+T T T … T
+1 2 3 k
+Y Y Y º Y
+11 21 31 k1
+Y Y Y º Y
+12 22 32 k2
+Y Y Y º Y
+: .13 : .23 : .33 . . . : .k3
+Y Y Y º Y
+1n1 2n2 3n3 knk
+La primera interrogante a despejar es si existen diferencias entre el desgaste
+promedio de los diferentes tipos de cuero. A continuación veremos la teoría general
+del diseño y análisis de este tipo de experimentos (DCA), y más adelante se analiza-
+rán los datos de los ejemplos planteados.
+Supongamos que se tienen k poblaciones o tratamientos, independientes y con
+medias desconocidas m , m , …, m , así como varianzas también desconocidas pero
+1 2 k
+que se suponen iguales s 2 = s 2 = … = s 2 = s 2.Las poblaciones pueden ser k méto-
+1 2 k
+dos de producción, k tratamientos, k grupos, etc., y sus medias se refieren o son
+medidas en términos de la variable de respuesta.
+Se decide realizar un experimento completamente al azar para comparar las
+poblaciones, en principio mediante la hipótesis de igualdad de medias (relación 3.1).
+Los datos generados por un diseño completamente al azar para comparar dichas po-
+blaciones se pueden escribir como en la tabla 3.3. El elemento Y en esta tabla es la
+ij
+j-ésima observación que se hizo en el tratamiento i; n es el tamaño de la muestra o
+i
+las repeticiones observadas en el tratamiento i. Es recomendable utilizar el mismo
+número de repeticiones (n = n) en cada tratamiento, a menos que hubiera alguna ra-
+i
+Diseño balanceado zón para no hacerlo.1 Cuando n i = n para toda i se dice que el diseño es balanceado.
+Es cuando se utiliza el mismo El número de tratamientos k es determinado por el investigador y depende del
+número de repeticiones en problema particular de que se trata. El número de observaciones por tratamiento (n)
+cada tratamiento.
+debe escogerse con base en la variabilidad que se espera observar en los datos, así
+como en la diferencia mínima que el experimentador considera que es importante
+detectar. Con este tipo de consideraciones, por lo general se recomiendan entre 5 y
+30 mediciones en cada tratamiento. Por ejemplo, se usa n = 10 cuando las medicio-
+nes dentro de cada tratamiento tienen un comportamiento consistente (con poca dis-
+persión). En el otro extremo, se recomienda n = 30 cuando las mediciones muestran
+bastante dispersión. Cuando es costoso o tardado realizar las pruebas para cada tra-
+tamiento se puede seleccionar un número menor de repeticiones, con lo cual sólo se
+podrán detectar diferencias grandes entre los tratamientos.
+En caso de que los tratamientos tengan efecto, las observaciones Y de la tabla
+ij
+3.3 se podrán describir con el modelo estadístico lineal dado por:
+1 Si uno de los tratamientos resulta demasiado caro en comparación con los demás, se pueden
+plantear menos pruebas con éste. Por otra parte, cuando uno de los tratamientos es un control (trata-
+miento de referencia) muchas veces es el más fácil y económico de probar, y como es de interés com-
+www.Fparar a tordos lose tratamienetos restanLtes con el ciontrbol, se recormiendoa realizar smás corri.das eon éste parar g
+que sus parámetros queden mejor estimados.
+GGuuttiieerrrreezz--0033..iinndddd 6644 1122//1100//0077 1100::0088::2200Diseño completamente al azar y ANOVA 65
+Y = m + t + e (3.2)
+ij i ij
+donde m es el parámetro de escala común a todos los tratamientos, llamado media
+global, t; es un parámetro que mide el efecto del tratamiento i y e es el error atri-
+i ij
+buible a la medición Y . Este modelo implica que en el diseño completamente al azar
+ij
+actuarían a lo más dos fuentes de variabilidad: los tratamientos y el error aleatorio.
+La media global m de la variable de respuesta no se considera una fuente de variabi-
+lidad por ser una constante común a todos los tratamientos, que hace las veces de
+punto de referencia con respecto al cual se comparan las respuestas medias de los
+tratamientos (véase figura 3.2). Si la respuesta media de un tratamiento par ticu lar m
+i
+es “muy diferente” de la respuesta media global m, es un síntoma de que existe un
+efecto de dicho tratamiento, ya que como se verá más adelante, t = m – m. La dife-
+i i
+rencia que deben tener las medias entre sí para concluir que hay un efecto (que los
+tratamientos son diferentes), nos lo dice el análisis de varianza (ANOVA).
+En la práctica puede suceder que los tratamientos que se desea comparar sean
+demasiados como para experimentar con todos. Cuando esto sucede es conveniente
+comparar sólo una muestra de la población de tratamientos, de modo que t pasa a
+i
+ser una variable aleatoria con su propia varianza s 2 que deberá estimarse a partir de
+t
+los datos (véase sección “Modelos de efectos aleatorios” del capítulo 5). En este
+capítulo sólo se presenta el caso en que todos los tratamientos que se tienen se prue-
+ban, es decir, se supone una población pequeña de tratamientos, lo cual hace posible
+compararlos a todos. En este caso, el modelo dado por la ecuación (3.2) se llama
+modelo de efectos fijos. Modelo de efectos fijos
+Es cuando se estudian todos
+ANOVA para el diseño completamente al azar (DCA) los posibles tratamientos.
+El análisis de varianza (ANOVA) es la técnica central en el análisis de datos experi-
+mentales. La idea general de esta técnica es separar la variación total en las partes
+Análisis de varianza
+con las que contribuye cada fuente de variación en el experimento. En el caso del
+Consiste en separar la variación
+DCA se separan la variabilidad debida a los tratamientos y la debida al error. Cuando
+total observada en cada una de
+la primera predomina “claramente” sobre la segunda, es cuando se concluye que los las fuentes que contribuye a la
+tratamientos tienen efecto (figura 3.1b), o dicho de otra manera, las medias son dife- misma.
+rentes. Cuando los tratamientos no dominan contribuyen igual o menos que el error,
+por lo que se concluye que las medias son iguales (figura 3.1a). Antes de comenzar
+a) b)
+Variabilidad total Variabilidad total
+Variabilidad Variabilidad Variabilidad Variabilidad
+debida a debida a debida a debida a
+tratamientos error tratamientos error
+No hay efecto de tratamiento Sí hay efecto de tratamiento
+www.FreeLibros.org
+Figura 3.1 Partiendo la variación total en sus componentes en un DCA.
+GGuuttiieerrrreezz--0033..iinndddd 6655 1122//1100//0077 1100::0088::220066 CAPÍTULO 3 Experimentos con un solo factor (análisis de varianza)
+Y
+m
+1 m
+t 4 m
+1 t 4 t k
+k
+m
+t
+3
+t
+2 m
+3
+m
+2
+T T T T … T
+1 2 3 4 k
+Figura 3.2 Representación de los efectos de los tratamientos en el DCA.
+con el análisis del DCA se introduce alguna notación que simplifica la escritura de
+las expresiones involucradas en dicho análisis.
+Notación de puntos Notación de puntos
+Sirve para representar sumas y
+medias que se obtienen a par- Sirve para representar de manera abreviada cantidades numéricas que se pueden
+tir de los datos experimentales. calcular a partir de los datos experimentales, donde Y representa la j-ésima observa-
+ij
+ción en el tratamiento i, con i = 1, 2, …, k y j = 1, 2, …, n. Las cantidades de interés
+i
+son las siguientes:
+Y = Suma de las observaciones del tratamiento i.
+–i•
+Y = Media de las observaciones del i-ésimo tratamiento.
+i•
+Y = Suma total de las N = n + n + … + n mediciones.
+–•• 1 2 k
+Y = Media global o promedio de todas las observaciones.
+••
+Note que el punto indica la suma sobre el correspondiente subíndice. Así, algu-
+nas relaciones válidas son,
+Y
+=∑ni
+Y ;Y =
+∑n
+ji =1Y
+ij ;Y
+=∑k ∑ni
+Y
+i• ij i• n •• ij
+j=1 i i=1 jj=1
+Y
+Y = ••; i=1,2,…,k
+•• N
+donde N =Σk n es el total de observaciones.
+i=1 i
+ANOVA
+El objetivo del análisis de varianza en el DCA es probar la hipótesis de igualdad de
+www.FreeLibros.org
+los tratamientos con respecto a la media de la correspondiente variable de respuesta:
+GGuuttiieerrrreezz--0033..iinndddd 6666 1122//1100//0077 1100::0088::2200Diseño completamente al azar y ANOVA 67
+H : m = m = … = m = m
+0 1 2 k
+(3.3)
+H : m π m para algún i π j
+A i j
+la cual se puede escribir en forma equivalente como:
+H : t = t = … = t = 0
+0 1 2 k
+(3.4)
+H : t π 0 para algún i
+A i
+donde t es el efecto del tratamiento i sobre la variable de respuesta. Si se acepta H
+i 0
+se confirma que los efectos sobre la respuesta de los k tratamientos son estadística-
+mente nulos (iguales a cero), y en caso de rechazar se estaría concluyendo que al
+menos un efecto es diferente de cero.
+La equivalencia de las hipótesis (3.3) y (3.4) se deduce directamente del mode-
+lo asociado al diseño (ecuación 3.2),2 pero se observa más fácilmente en la figura 3.2,
+que es una manera de representar el diseño completamente al azar. En dicha figura se
+ve que t = m – m, el efecto del tratamiento i, es la distancia entre la respuesta media
+i i
+del tratamiento, m, y la respuesta media global, m, y cuando un efecto es igual a cero
+i
+equivale a decir que la media del tratamiento correspondiente es igual a la media
+global. Así, se observa que para que todas las respuestas medias de tratamientos sean
+iguales a la respuesta media global m, representada por la línea horizontal, se requie-
+re que todos los efectos t sean iguales a cero.
+i
+Para probar la hipótesis dada por las relaciones (3.3) o (3.4) mediante la técnica
+de ANOVA, lo primero es descomponer la variabilidad total de los datos en sus dos
+componentes: la variabilidad debida a tratamientos y la que corresponde al error
+aleatorio, como se hace a continuación.
+Una medida de la variabilidad total presente en las observaciones de la tabla 3.3
+es la suma total de cuadrados dada por,
+∑k ∑ni ∑k ∑ni Y2
+SC = (Y −Y )2 = Y2− •••
+T ij •• ij N
+i=1 j=1 i=1 j=1
+donde Y es la suma de los N =Σni n datos en el experimento. Al sumar y restar
+•• i=1 i –
+adentro del paréntesis la media del tratamiento i, (Y ):
+i•
+SC
+=∑k ∑ni
+⎡ ⎣ (Y −Y )+(Y −Y )⎤ ⎦ 2
+T ij i• i• ••
+i=1 j=1
+y desarrollando el cuadrado, la SC se puede partir en dos componentes como:
+T
+∑k ∑k ∑ni
+SC = n(Y −Y )2 + (Y −Y )2
+T i i• •• ij i•
+i=1 i=1 j=1
+donde el primer componente es la suma de cuadrados de tratamientos (SC ) y el
+TRAT
+segundo es la suma de cuadrados del error (SC ). Al observar con detalle estas su-
+E
+mas de cuadrados se aprecia que la SC mide la variación o diferencias entre
+TRAT
+www.FreeLibros.org
+2 Basta observar que E(Y) = m + t = m, de modo que t = m – m.
+ij i i i
+GGuuttiieerrrreezz--0033..iinndddd 6677 1122//1100//0077 1100::0088::221168 CAPÍTULO 3 Experimentos con un solo factor (análisis de varianza)
+tratamientos, ya que si éstos son muy diferentes entre sí, entonces la diferencia
+Y −Y tenderá a ser grande en valor absoluto, y con ello también será grande la
+i• ••
+SC . Mientras que la SC mide la variación dentro de tratamientos, ya que si hay
+TRAT E
+mucha variación entre las observaciones de cada tratamiento entonces Y −Y tende-
+ij i•
+rá a ser grande en valor absoluto. En forma abreviada, esta descomposición de la
+suma total de cuadrados se puede escribir como:
+SC = SC + SC (3.5)
+T TRAT E
+Como hay un total de N =Σni n observaciones, la SC tiene N – 1 grados de
+i=1 i T
+libertad. Hay k tratamientos o niveles del factor de interés, así que SC tiene k – 1
+TRAT
+grados de libertad, mientras que la SC tiene N – k. Los grados de libertad que corres-
+E
+ponden a los términos de la igualdad (3.5) cumplen una relación similar dada por:
+N – 1 = (k – 1) + (N – k)
+Las sumas de cuadrados divididas entre sus respectivos grados de libertad se
+Cuadrados medios llaman cuadrados medios. Los dos que más interesan son el cuadrado medio de tra-
+Es la suma de cuadrados dividi- tamientos y el cuadrado medio del error, que se denotan por
+dos entre sus respectivos gra-
+dos de libertad.
+SC SC
+CM = TRAT y CM = E
+TRAT k−1 E N −k
+Los valores esperados de los cuadrados medios están dados por
+∑k
+nτ2
+E(CM )=σ2 yE(CM )=σ2 + i=1 i i (3.6)
+E TRAT N−k
+En estas expresiones se aprecia que cuando la hipótesis nula es verdadera, am-
+bos cuadrados medios estiman la varianza s2, ya que el segundo término de la expre-
+sión para el E(CM ) sería igual a cero. Con base en este hecho se construye el
+TRAT
+estadístico de prueba como sigue: se sabe que SC y SC son independientes, por
+E TRAT
+lo que SC /s2 y SC /s2 son dos variables aleatorias independientes con distribu-
+E TRAT
+ción ji-cuadrada con N – k y k – 1 grados de libertad, respectivamente. Entonces,
+bajo el supuesto de que la hipótesis H (relaciones 3.3 y 3.4) es verdadera, el esta-
+0
+dístico
+CM
+F = TRAT (3.7)
+0 CM
+E
+sigue una distribución F con (k – 1) grados de libertad en el numerador y (N – k)
+www.FreeLibros.org
+grados de libertad en el denominador. De las ecuaciones (3.6) y (3.7) se deduce que
+GGuuttiieerrrreezz--0033..iinndddd 6688 1122//1100//0077 1100::0088::2211Diseño completamente al azar y ANOVA 69
+si F es grande, se contradice la hipótesis de que no hay efectos de tratamientos; en
+0
+cambio, si F es pequeño se confirma la validez de H . Así, para un nivel de signifi-
+0 0
+cancia a prefijado, se rechaza H si F > F , donde F es el percentil
+0 0 a, k – l, N – k a, k – l, N – k
+(1 – a) × 100 de la distribución F. También se rechaza H si el valor-p < a, donde el
+0
+valor-p es el área bajo la distribución F a la derecha del estadístico F , es decir,
+k – l, N – k 0
+el valor-p = P(F > F ).
+0
+Toda la información necesaria para calcular el estadístico F hasta llegar al
+0
+valor-p se escribe en la llamada tabla de análisis de varianza (ANOVA) que se mues- Tabla de análisis de
+tra en la tabla 3.4. En esta tabla, las abreviaturas significan lo siguiente: FV = fuente varianza
+En ésta se resume el análisis
+de variabilidad (efecto), SC = suma de cuadrados, GL = grados de libertad, CM =
+de varianza de un experimento,
+cuadrado medio, F = estadístico de prueba, valor-p = significancia observada.
+0 que sirve para probar las hipó-
+Debemos señalar que el caso particular de comparar dos tratamientos supo-
+tesis de interés.
+niendo varianzas desconocidas pero iguales (prueba T de Student presentada en el
+capítulo 2), también se puede analizar con el ANOVA y se obtiene el mismo valor del
+valor-p que con la prueba T. Es fácil comprobar que el estadístico t de la prueba T
+0
+elevado al cuadrado es igual al estadístico F (3.7) de la prueba F del ANOVA. Por
+0
+último, es importante resaltar que el ANOVA supone que la variable de respuesta se
+distribuye normal, con varianza constante (los tratamientos tienen varianza similar)
+y que las mediciones son independientes entre sí. Estos supuestos deben verificarse
+para estar más seguros de las conclusiones obtenidas.
+Análisis del ejemplo 3.2 (comparación de cuatro tipos de cuero). La interro-
+gante que se planteó en el problema de la comparación entre los cuatro tipos de
+cuero fue: ¿existen diferencias entre el desgaste promedio de los diferentes tipos de
+cuero? La respuesta a esta pregunta es el resultado de contrastar las hipótesis:
+H : m = m = m = m = m
+0 A B C D
+(3.8)
+H : m π m para algún i π j
+A i j
+En la tabla 3.5 se muestra el análisis de varianza para este ejemplo. Como el
+valor-p = 0.0000 es menor que la significancia prefijada a = 0.05, se rechaza H y se
+0
+Tabla 3.4 Tabla de ANOVA para el DCA.
+FV SC GL CM F Valor-p
+0
+Tratamientos SC =∑k Y i•2 −Y •2 • k – 1 CM = SC TRAT CM TRAT P(F>F)
+TRAT i=1 n N TRAT k−1 CM 0
+i E
+SC
+Error SC =SC −SC N – k CM = E
+E T TRAT E N−k
+wwTotal wSC = .∑k F∑ni Y2r−Y ••2 eN – 1eLibros.org
+T i=1 j=1 ij N
+GGuuttiieerrrreezz--0033..iinndddd 6699 1122//1100//0077 1100::0088::221170 CAPÍTULO 3 Experimentos con un solo factor (análisis de varianza)
+acepta que al menos un par de tipos de cuero tienen un desgaste promedio diferente
+(la verificación de supuestos se deja al lector como ejercicio).
+Si al menos un tipo de cuero se desgasta de forma diferente de otro, entonces
+¿cuáles tipos de cuero son diferentes entre sí? Para responder esta pregunta se reali-
+zan todas las comparaciones posibles, dos a dos entre las medias de tratamientos,
+Método de comparaciones para lo cual existen varios métodos de prueba conocidos genéricamente como méto-
+múltiples dos de comparaciones múltiples, algunos de los cuales se presentan más adelante,
+Técnicas para comparar todos junto con otros análisis gráficos que permiten entender mejor los resultados.
+los posibles pares de medias
+Además de la tabla 3.5 del ANOVA se observa que la variación total en 24 da-
+de tratamientos.
+tos de este experimento fue de 9 101. De esta cantidad, 7 072 se debe a las diferen-
+cias entre los tipos de cuero y 2 029 corresponde a la diferencia entre los cueros del
+mismo tipo. Al ponderar esto por los correspondientes grados de libertad, se obtie-
+nen los cuadrados medios que reflejan la magnitud real de cada fuente de variación.
+Así, vemos que las diferencias debido al tipo de cuero es de 2 357 y que el error es
+de 101; por lo tanto, la primera es 23.2 veces más grande que la segunda, lo cual
+indica que las diferencias observadas entre los tipos de cuero son significativas y que
+no se deben a pequeñas variaciones muestrales (error).
+Ejemplo 3.3
+Comparación de cuatro métodos de ensamble. Consideremos los datos del
+DCA dados en el ejemplo 3.1, donde el interés era comparar cuatro métodos de en-
+samble en cuanto al tiempo promedio en minutos que requiere cada uno de ellos. Se
+hicieron cuatro observaciones del tiempo de ensamble en cada método. Los resulta-
+dos se muestran en la tabla 3.1.
+Una manera de comparar los métodos de ensamble (tratamientos) es probar la
+hipótesis:
+H : t = t = t = t = 0
+0 A B C D
+(3.9)
+H : t π 0 para algún i = A, B, C, D
+A i
+En caso de no rechazar H se concluye que los tiempos promedio de los cuatro
+0
+métodos de ensamble son estadísticamente iguales; pero si se rechaza, se concluye
+que al menos dos de ellos son diferentes. En la tabla 3.6 se muestra el análisis de
+varianza correspondiente, en donde se aprecia que el valor del valor-p = 0.0018 es
+menor que a = 0.05, por lo que se rechaza H en este nivel de significancia en par ticu-
+0
+lar. No obstante, también se rechazaría para cualquier otro nivel de significancia
+Tabla 3.5 ANOVA para los tipos de cuero.
+F V SC GL CM F Valor-p
+0
+Tipo de cuero 7 072.33 3 2 357.44 23.24 0.0000
+Error 2 029.0 20 101.45
+www.FreeLibros.org
+Total 9 101.33 23
+GGuuttiieerrrreezz--0033..iinndddd 7700 1122//1100//0077 1100::0088::2222Diseño completamente al azar y ANOVA 71
+Tabla 3.6 ANOVA para los métodos de ensamble.
+FV SC GL CM F Valor-p
+0
+Tratamientos 69.5 3 23.17 9.42 0.0018
+Error 29.5 12 2.46
+Total 99.0 15
+prefijado, a, que cumpla con a > 0.0018, ya que en esos casos el estadístico de prue-
+ba F = 9.42 caería en la región de rechazo.
+0
+Cálculos manuales
+Hay personas que, cuando hacen los cálculos de forma manual, complementan el
+entendimiento de un análisis con el apoyo de una calculadora de bolsillo, al menos
+para los casos más simples. Para el caso del ANOVA, estos cálculos se facilitan si
+primero se obtiene la información básica desplegada en la tabla 3.7. Con esta infor-
+mación se pueden calcular las sumas de cuadrados, como se hace a continuación:
+1. Suma total de cuadrados o variabilidad total de los datos:
+∑4 ∑4 Y2 1562
+SC = Y2− •• =1620− =99.0
+T ij N 16
+i=j j=1
+2. Suma de cuadrados de tratamientos o variabilidad debida a la diferencia
+entre métodos de ensamble:
+∑4 Y2 Y2 (292+342+512+422) 11562
+SC = i• − •• = − =69.5
+TRAT 4 N 4 16
+i=1
+3. Suma de cuadrados del error o variabilidad dentro de métodos de ensamble:
+SC =SC −SC =99−69.5=29.5
+E T TRAT
+Tabla 3.7 Detalles de los cálculos para el ANOVA en el DCA para el tiempo de ensamble, ejemplo 3.3.
+Métodos de ensamble Operaciones básicas
+A B C D
+6 7 11 10
+Σ4 Σ4 Y2 =62+72+…+92 =1620
+Observaciones ⇒ 8 9 16 12 i=1 j=1 ij
+7 10 11 11 = suma de los cuadrados de todas las observaciones o datos
+8 8 13 9
+Total por tratamiento (Y ) ⇒ 29 34 51 42 Y =Σ4 Σ4 Y =6+7+…+9=156 suma de los datos
+i• •• i=1 j=1 ij
+Número de datos en cada
+tratamiento (n) ⇒ 4 4 4 4 N =Σ i4 =1n i =16 total de mediciones
+i
+Media muestral por Y 156
+tratamiento (Y i•) ⇒ 7.25 8.50 12.75 10.50 Y •• = N•• = 16 =9.75 media global
+Desviaciones respecto a la
+www.F–2.r50 e–1.25 e3.0 0L.75 τˆ i=Yb−Y efecrto estoimado dels método .i org
+media global (τˆ) ⇒ i i• ••
+i
+GGuuttiieerrrreezz--0033..iinndddd 7711 1122//1100//0077 1100::0088::222272 CAPÍTULO 3 Experimentos con un solo factor (análisis de varianza)
+4. Cuadrados medios de tratamientos y del error (efecto ponderado de cada
+fuente de variación):
+SC 69.5 SC 299.5
+CM = TRAT = =23.17 y CM = E = =2.46
+TRAT k−1 3 E N −k 12
+5. Estadístico de prueba:
+CM 23.17
+F = TRAT = =9.42
+0 CM 2.46
+E
+Con toda esta información se procede a llenar la tabla 3.6 de ANOVA. El valor
+de la significancia observada o valor-p es el área bajo la curva de la distribución F
+3, 12
+a la derecha de F = 9.42, lo cual es difícil de calcular de forma manual. Sin embargo,
+0
+cuando esto no sea posible, recordemos que otra forma de rechazar o no una hipóte-
+sis es comparar el estadístico de prueba contra un número crítico de tablas. En el
+caso de las tablas de la distribución F en el apéndice, se lee que el valor crítico para
+a = 0.05 es F = 3.49. Como F = 9.42 > F = 3.49, entonces se rechaza
+0.05, 3, 12 0 0.05, 3, 12
+H , con lo cual se concluye que sí hay diferencia o efecto de los métodos de ensam-
+0
+ble en cuanto a su tiempo promedio.
+Diagramas de cajas simultáneos
+Diagramas de caja Los diagramas de cajas3 simultáneos representan una manera descriptiva de compa-
+Gráficos basados en los cuarti- rar tratamientos. En la figura 3.3 se presentan los diagramas de cajas simultáneos
+les de un conjunto de datos. para los cuatro métodos de ensamble del ejemplo 3.3. Se observa que el método C
+parece diferente a los métodos A y B en cuanto a sus medias; la media del método D
+también se ve diferente a la media del método A. Por otra parte, se observa un poco
+más de variabilidad en el método C que en todos los demás. Lo que sigue es verificar
+que lo que se observa en el diagrama de caja implica diferencias significativas entre
+los distintos tratamientos; por lo tanto, es necesario hacer pruebas estadísticas por-
+que los datos que se analizan en los diagramas de cajas son muestras.
+En general, cuando los diagramas no se traslapan es probable que los trata-
+mientos correspondientes sean diferentes entre sí, y la probabilidad es mayor en la
+medida que los diagramas están basados en más datos. Cuando se traslapan un poco
+puede ser que haya o no diferencias significativas, y en cualquier caso es convenien-
+te utilizar una prueba estadística para determinar cuáles diferencias son significati-
+vas. Estas pruebas se verán en la siguiente sección.
+Gráficos de medias
+Cuando se rechaza H mediante el ANOVA, y se concluye que no hay igualdad entre
+0
+las medias poblacionales de los tratamientos, pero no se tiene información específica
+3 El diagrama de caja es una herramienta para describir el comportamiento de unos datos, y es de
+suma utilidad para comparar procesos, tratamientos y, en general, para hacer análisis por estratos (lotes,
+proveedores, turnos). El diagrama de caja se basa en los cuartiles y parte el rango de variación de los
+datos en cuatro grupos, cada uno de los cuales contiene 25% de las mediciones. De esta forma se puede
+www.Fvisualizarr dóndee empiezae 25% de loLs datos miayobres, dónder 25% ode los datsos menor.es y doe dónde ar g
+dónde se ubica 50% de los datos que están al centro.
+GGuuttiieerrrreezz--0033..iinndddd 7722 1122//1100//0077 1100::0088::2222Diseño completamente al azar y ANOVA 73
+A
+B
+C
+D
+Figura 3.3 Diagramas de cajas para los métodos de ensamble.
+sobre cuáles tratamientos son diferentes entre sí, el gráfico de medias (means plot)
+permite hacer una comparación visual y estadística de las medias de los tratamientos
+(métodos de ensamble). En la figura 3.4 se presenta el gráfico de medias con interva-
+los de confianza de acuerdo con la prueba LSD, la cual se estudiará más adelante.
+Como se explicó en el capítulo anterior, si dos intervalos de confianza se tras-
+lapan, los tratamientos correspondientes son estadísticamente iguales en cuanto a sus
+medias; pero si no se traslapan, entonces son diferentes. Así, podemos ver que el
+método LSD detecta con una confianza de 95% que A π C, A π D y B = C. De esta
+forma, la conclusión práctica del experimento es que el mejor método de ensamble
+parece ser el A, ya que estadísticamente sus tiempos son menores que los de los mé-
+todos C y D. Le sigue el método B, ya que éste es mejor que el C. Pero no es posible
+concluir que el método A sea mejor que el método B, ya que sus intervalos se trasla-
+pan. Si se quisiera decidir en forma estadística sobre la diferencia entre los métodos
+A y B, una forma de hacerlo es tomar más datos para incrementar la potencia de la
+prueba, o bien, recurrir a otros criterios para tomar la decisión.
+Figura 3.4 Gráfico de medias con el método LSD (ejemplo 3.3).
+odotéM
++
++
++
++
+6 8 10 12 14 16
+Tiempo
+Método LSD
+A
+Método de ensamble
+opmeiT
+15.5
+13.5
+*
+11.5
+*
+9.5
+*
+7.5
+*
+5.5
+B C D
+www.FreeLibros.org
+GGuuttiieerrrreezz--0033..iinndddd 7733 1122//1100//0077 1100::0088::222274 CAPÍTULO 3 Experimentos con un solo factor (análisis de varianza)
+Comparaciones o pruebas
+de rango múltiples
+Después de que se rechazó la hipótesis nula en un análisis de varianza, es necesario
+ir a detalle y ver cuáles tratamientos son diferentes. A continuación veremos tres
+estrategias distintas para ir a ese detalle.
+Comparación de parejas de medias
+de tratamientos
+Cuando no se rechaza la hipótesis nula H : m = m = … m = m,el objetivo del expe-
+0 1 2 k
+rimento está cubierto y la conclusión es que los tratamientos no son diferentes. Si por
+el contrario se rechaza H , y por consiguiente se acepta la hipótesis alternativa H :
+0 A
+m π m para algún i π j, es necesario investigar cuáles tratamientos resultaron dife-
+i j
+rentes, o cuáles provocan la diferencia. Como se acaba de ilustrar en la gráfica de
+medias, estas interrogantes se responden probando la igualdad de todos los posibles
+pares de medias, para lo que se han propuesto varios métodos, conocidos como mé-
+todos de comparaciones múltiples o pruebas de rango múltiple. La diferencia pri-
+mordial entre los métodos radica en la potencia que tienen para detectar las diferencias
+entre las medias. Se dice que una prueba es más potente si es capaz de detectar dife-
+rencias más pequeñas.
+Diferencia mínima Método LSD (diferencia mínima significativa)
+significativa (LSD)
+Una vez que se rechazó H en el ANOVA, el problema es probar la igualdad de todos
+Es la diferencia mínima que 0
+debe haber entre dos medias los posibles pares de medias con la hipótesis:
+muestrales para considerar que
+dos tratamientos son diferentes.
+H : m = m
+0 i j (3.10)
+H : m π m
+A i j
+para toda i π j. Para k tratamientos se tienen en total k(k – 1)/2 pares de medias. Por
+ejemplo, si k = 4 existen 4 × 3/2 = 6 posibles pares de medias. El estadístico de prue-
+ba para cada una de las hipótesis dadas en (3.11) es la correspondiente diferencia en
+valor absoluto entre sus medias muestrales Y −Y . Se rechaza la hipótesis H : m =
+i• j• 0 i
+m si ocurre que
+j
+⎛ ⎞
+1 1
+Y −Y >t CM ⎜ + ⎟ = LSD (3.11)
+i• j• α/2,N−k E⎝ n n ⎠
+i j
+donde el valor de t se lee en las tablas de la distribución T de Student con N – k
+a/2, N – k
+grados de libertad que corresponden al error, el CM es el cuadrado medio del error
+E
+y se obtiene de la tabla de ANOVA, n y n son el número de observaciones para los
+www.FreeLiibj ros.org
+tratamientos i y j, respectivamente. La cantidad LSD se llama diferencia mínima
+GGuuttiieerrrreezz--0033..iinndddd 7744 1122//1100//0077 1100::0088::2233Comparaciones o pruebas de rango múltiples 75
+significativa (least significant difference), ya que es la diferencia mínima que debe
+existir entre dos medias muestrales para considerar que los tratamientos correspon-
+dientes son significativamente diferentes. Así, cada diferencia de medias muestrales
+en valor absoluto que sea mayor que el número LSD se declara significativa. Note
+que si el diseño es balanceado, es decir, si n = n = … = n = n, la diferencia mínima
+1 2 k
+significativa se reduce a:
+LSD=t 2CM /n (3.12)
+α/2,N−k E
+En caso de rechazar H se acepta la hipótesis alternativa H : m π m, la cual
+0 A i j
+nos dice que las medias de los tratamientos i y j son diferentes. El método LSD tiene
+una potencia importante, por lo que en ocasiones declara significativas aun pequeñas
+diferencias.
+Ejemplo 3.4
+Ilustremos esta prueba continuando con el ejemplo 3.3, en el cual, con el ANOVA se
+rechazó la hipótesis H : m = m = m = m y se acepta que al menos un par de medias
+0 A B C D
+de tratamientos (métodos de ensamble) son diferentes entre sí. Para investigar cuáles
+pares de medias son estadísticamente diferentes se prueban los seis posibles pares de
+hipótesis:
+H : μ =μ vs. H μ: μ ≠
+0 A B A A B
+H : μ =μ vss. H : μ ≠μ
+0 A C A A C
+H : μ =μ vs. H μ: ≠μ μ
+0 A D A A D (3.13)
+H : μ =μ vs. H μ: μ ≠
+0 B C A B C
+H : μ =μ vs. H : μ ≠μ
+0 B D A B D
+H : μ =μ vs. H : μμ ≠μ
+0 C D A C D
+utilizando el método de LSD. En el ANOVA de la tabla 3.6 se observa que los grados
+de libertad del error son N – k = 12, y que el cuadrado medio del error es CM = 2.46.
+E
+Si usamos una significancia predefinida de a = 0.05, de la tabla de la distribución T
+de Student con 12 grados de libertad, se obtiene que t = 2.18. Como en cada
+0.025, 12
+tratamiento se hicieron n = 4 pruebas, entonces:
+2×2.46
+LSD=t 2CM /n =2.18 =2.42
+α/2,N−k E 4
+La decisión sobre cada una de las seis hipótesis listadas arriba se obtiene al
+comparar las correspondientes diferencias de medias muestrales en valor absoluto
+con el número LSD = 2.42. Se declaran significativas aquellas diferencias que son
+mayores a este número. Los resultados se muestran en la tabla 3.8, de donde se con-
+cluye que m = m , m = m , m = m , mientras que m π m , m π m y m π m . Note
+A B B D C D A C B C A D
+que son los mismos resultados que previamente se obtuvieron en la gráfica de me-
+www.FreeLibros.org
+dias (figura 3.4), cuyos intervalos están basados en este método LSD. De manera
+GGuuttiieerrrreezz--0033..iinndddd 7755 1122//1100//0077 1100::0088::223376 CAPÍTULO 3 Experimentos con un solo factor (análisis de varianza)
+Tabla 3.8 Aplicación de la prueba LSD a métodos
+de ensamble.
+Diferencia Diferencia muestral Decisión
+poblacional en valor absoluto
+m – m 1.25 < 2.42 No significativa
+A B
+m – m * 5.50 > 2.42 Significativa
+A C
+m – m * 3.25 > 2.42 Significativa
+A D
+m – m * 4.25 > 2.42 Significativa
+B C
+m – m 2.00 < 2.42 No significativa
+B D
+m – m 2.25 < 2.42 No significativa
+C D
+específica, los intervalos en la gráfica de medias (means plot) con el método LSD se
+obtienen con:
+CM
+Y ±t E
+i• α/2,N−k n
+i
+De esta forma, si dos intervalos se traslapan, entonces no habrá diferencias
+entre las medias de los tratamientos correspondientes. Note que CM /n se está
+E
+considerando como el error estándar o desviación estándar de la correspondiente
+media muestral.
+Método de Tukey
+Un método más conservador para comparar pares de medias de tratamientos es el
+método de Tukey, el cual consiste en comparar las diferencias entre medias muestra-
+les con el valor crítico dado por:
+T = q (k, N – k) CM /n
+a a
+E i
+donde CM es el cuadrado medio del error, n es el número de observaciones por
+E
+tratamiento, k es el número de tratamientos, N – k es igual a los grados de libertad
+para el error, a es el nivel de significancia prefijado y el estadístico q (k, N – k) son
+a
+puntos porcentuales de la distribución del rango estudentizado, que se obtienen de la
+correspondiente tabla en el apéndice. Se declaran significativamente diferentes los
+pares de medias cuya diferencia muestral en valor absoluto sea mayor que T . A di-
+a
+ferencia de los métodos LSD y Duncan, el método de Tukey trabaja con un error a
+muy cercano al declarado por el experimentador.
+Ejemplo 3.5
+Para aplicar el método de Tukey al ejemplo de los métodos de ensamble, a partir del
+ANOVA de la tabla 3.6, se toma la información pertinente y de las tablas del rango
+estudentizado dadas en el apéndice, para a = 0.05, se obtiene q (4, 12) = 4.20, de
+0.05
+manera que el valor crítico es:
+ææ ææ
+www.F re T =e q (4, 1L 2) ÷ CMi /b n = 4.20r ¥ ÷o 2.46/4 =s 3.27 .org
+0.05 0.05 E
+GGuuttiieerrrreezz--0033..iinndddd 7766 1122//1100//0077 1100::0088::2233Comparaciones o pruebas de rango múltiples 77
+que al compararlo con las diferencias de medias muestrales, los resultados sobre las
+seis hipótesis son:
+Diferencia Diferencia muestral Decisión
+poblacional
+m – m 1.25 < 3.27 No significativa
+A B
+m – m * 5.50 > 3.27 Significativa
+A C
+m – m 3.25 > 3.27 No significativa
+A D
+m – m * 4.25 > 3.27 Significativa
+B C
+m – m 2.00 < 3.27 No significativa
+B D
+m – m 2.25 < 3.27 No significativa
+C D
+De esta tabla se concluye que m = m = m , m = m , m π m y m π m . Ob-
+A B D C D A C B C
+serve que esta prueba no encuentra diferencia entre los métodos de ensamble A y D,
+la cual sí se detectó con el método LSD. Esto es congruente con el hecho de que la
+prueba de Tukey es menos potente que la prueba LSD, por lo que las pequeñas dife-
+rencias no son detectadas como significativas. Asimismo, el riesgo de detectar una
+diferencia que no existe es menor con el método de Tukey. En la práctica, después de
+que se ha rechazado H con el ANOVA, conviene aplicar ambos métodos (LSD y
+0
+Tukey) u otros, cuando haya dudas sobre cuál es el tratamiento ganador. Cuando la
+diferencia entre dos tratamientos es clara, ambos métodos coinciden.
+Método de Duncan
+En este método para la comparación de medias, si las k muestras son de igual tama-
+ño, los k promedios se acomodan en orden ascendente y el error estándar de los
+promedios se estima con S = CM /n. Si alguno o todos los tratamientos tienen
+tamaños diferentes, se reemY pi•laza n poE r la media armónica de las {n}, que está dada
+i
+por,
+k
+n =
+AR ∑k 1
+i=1n
+i
+Nótese que cuando n = n = … = n = n, ocurre que n = n. De la tabla de
+1 2 k AR
+rangos significantes de Duncan dada en el apéndice, se obtienen los valores críticos
+r (p, l), p = 2, 3, …, k, donde a es el nivel de significancia prefijado y l son los gra-
+a
+dos de libertad para el error. Con estos k – 1 valores se obtienen los rangos de signi-
+ficancia mínima dados por
+R =r (p,l)S ; p=2,3,…,k
+p α Yi•
+Las diferencias observadas entre las medias muestrales se comparan con los
+rangos R de la siguiente manera: primero se compara la diferencia entre la media
+p
+más grande y la más pequeña con el rango R . Luego, la diferencia entre la media más
+k
+grande y la segunda más pequeña se compara con el rango R . Estas comparacio-
+k – 1
+nes continúan hasta que la media mayor se haya comparado con todas las demás.
+www.FreeLibros.org
+Enseguida, se compara la diferencia entre la segunda media más grande y la media
+GGuuttiieerrrreezz--0033..iinndddd 7777 1122//1100//0077 1100::0088::223378 CAPÍTULO 3 Experimentos con un solo factor (análisis de varianza)
+menor con el rango R . Después, la diferencia entre la segunda media más grande
+k – 1
+y la segunda más pequeña se compara con el valor de R , y así sucesivamente has-
+k – 2
+ta que se comparan los k(k – 1)/2 pares de medias posibles con el rango que les co-
+rresponda. En las comparaciones donde la diferencia observada es mayor que el
+rango respectivo, se concluye que esas medias son significativamente diferentes. Si
+dos medias caen entre otras dos que no son muy diferentes, entonces esas dos medias
+poblacionales también se consideran estadísticamente iguales.
+Ejemplo 3.6
+De nuevo, supongamos que interesa probar las seis hipótesis dadas en (3.13) para los
+cuatro métodos de ensamble. En la tabla de ANOVA (tabla 3.6) se lee que CM =
+E
+2.46, lo cual se basa en 12 grados de libertad. Así, el error estándar de cada promedio
+es S = CM /n = 2.46/4 =0.78, dado que se hicieron n = 4 observaciones en
+cadaY it•ratamienE
+to. De la tabla de rangos significantes de Duncan dada en el apéndice,
+para a = 0.05 y 12 grados de libertad, se leen los rangos r (2, 12) = 3.08, r (3, 12)
+0.05 0.05
+= 3.23 y r (4, 12) = 3.33. Con esta información, los rangos mínimos significan-
+0.05
+tes son:
+R =r (2,12)S =(3.08)(0.78)=2.40
+2 0.05 Yi•
+R =r (3,12)S =(3.23)(0.78)=2.52
+3 0.005 Yi•
+R =r (4,12)S =(3.33)(0.78)=2.60
+4 0.05 Yi•
+Estos rangos se comparan con las diferencias de medias de acuerdo al método
+descrito arriba.
+–
+Las cuatro medias muestrales acomodadas en orden ascendente son: Y = 7.25,
+– – – A
+Y = 8.50, Y = 10.50 y Y = 12.75. De aquí se obtienen las diferencias en el orden
+B D C
+dado por el método de Duncan y se van comparando con el rango correspondiente.
+En la siguiente tabla se resumen los resultados obtenidos.
+Diferencia Diferencia muestral Decisión
+poblacional comparada con su rango R
+P
+m – m 12.75 – 7.25 = 5.5* > 2.60 = R Significativa
+C A 4
+m – m 12.75 – 8.50 = 3.27* > 2.52 = R Significativa
+C B 3
+m – m 12.75 – 10.50 = 2.25 < 2.40 = R No significativa
+C D 2
+m – m 10.50 – 7.25 = 3.25* > 2.60 = R Significativa
+D A 3
+m – m 10.50 – 8.50 = 2.0 < 2.40 = R No significativa
+D B 2
+m – m 8.50 – 7.25 = 1.25 < 2.40 = R No significativa
+B A 2
+De esta tabla se concluye que m = m , m = m y m = m , mientras que m π m ,
+A B B D C D A C
+m π m y m π m , que son las mismas conclusiones que se obtuvieron con el méto-
+B C A D
+do LSD. En general, las pruebas de Duncan y LSD tienen un desempeño similar.
+Comparación de tratamientos con un control
+Tratamiento control (método de Dunnet)
+Se refiere a un tratamiento es-
+wtánwdar de referewncia o a la au.- FUna vezr que ese rechaeza H 0 coLn el ANOiVAb, en ocarsioneos uno des los k tr.atamoientos ar g
+sencia de tratamiento. comparar es el llamado tratamiento control y el interés fundamental es comparar los
+GGuuttiieerrrreezz--0033..iinndddd 7788 1122//1100//0077 1100::0088::2244Comparaciones o pruebas de rango múltiples 79
+k – 1 tratamientos restantes con dicho control. En muchos casos el tratamiento con-
+trol se refiere a un tratamiento estándar de referencia o también a la ausencia de tra-
+tamiento (véase ejercicio 3.12). Por ejemplo, al comparar varios medicamentos para
+el resfriado es conveniente que uno de los tratamientos sea que los pacientes no uti-
+licen ningún medicamento; esto sirve como referencia para decidir la posible utilidad
+de los medicamentos.
+Por facilidad, denotemos como tratamiento control al k-ésimo tratamiento.
+Hacer comparaciones con respecto al control implica probar las k – 1 hipótesis da-
+das por:
+H : m = m
+0 i k
+H : m π m
+A i k
+con i = 1, 2, …, k – 1, donde k es el tratamiento control. La hipótesis nula se re-
+chaza si,
+⎛ ⎞
+1 1
+Y −Y >D (k−1, l) CM ⎜ + ⎟
+i• k• α E⎝ n n ⎠
+i k
+donde D (k – 1, l) se encuentra en las tablas del apéndice; l son los grados de libertad
+a
+del cuadrado medio del error. Se recomienda que el tamaño de muestra del trata-
+miento control sea grande, a fin de estimar su media con mayor precisión.
+Comparación por contrastes
+No siempre interesa probar sólo las k(k – 1)/2 hipótesis dos a dos dadas por
+H : μ =μ vs. H : μ ≠μ para i≠ j, y no siempre estas hipótesis dos a dos inte-
+0 i j 0 i j
+resan todas por igual. En ocasiones, el objetivo del estudio lleva a contrastar hipóte-
+sis que involucran a más de dos medias. En esta sección se presentan este tipo de
+alternativas en la comparación de medias, pero antes se definen los conceptos de con-
+traste y contrastes ortogonales.
+Contraste
+Una expresión de la forma C =Σk cμ es una combinación lineal de las medias po-
+i=1 i i
+blacionales de interés, donde los coeficientes c son números reales. La combinación
+i
+lineal C se llama contraste si cumple que la suma de los coeficientes es igual a cero Contraste
+(Σk c =0). Muchas hipótesis estadísticas de interés son contrastes, como por ejem- Combinación lineal de medias
+i=1 i
+plo las hipótesis de comparación de medias. En efecto, ya hemos visto que la hipó- poblacionales donde la suma
+tesis nula H : μ =μ para i≠ j se puede escribir de manera equivalente como H : de los coeficientes es igual a
+0 i j 0 cero.
+m – m = 0, donde se observa que el contraste correspondiente es la combinación li-
+i j
+neal c m + c m con c = 1 y c = –1, e interesa verificar si es estadísticamente igual a
+i i j j i j
+cero.
+En general, supongamos que interesa probar si el contraste definido por
+C =Σk cμ es igual a cero. Si las poblaciones objeto de estudio son normales
+i=1 i i
+(N(μ σ, 2);i=1,2,…,k) el contraste C sigue una distribución normal con media
+i i
+ww μ
+C
+=Σ ik =1w cμ
+i i
+y varia. nzaF V
+C
+=Σ ik =r 1c ni2 σe i2. Cuande o las vaL rianzas i de b los tratar mieno tos s.org
+i
+GGuuttiieerrrreezz--0033..iinndddd 7799 1122//1100//0077 1100::0088::224480 CAPÍTULO 3 Experimentos con un solo factor (análisis de varianza)
+son iguales y el diseño experimental es balanceado (n = n para cada i), la varianza
+i –
+del contraste se reduce a V = σ2Σk c2. Al usar el CM para estimar a s2 y Y para
+C n i=1 i E i•
+estimar a la media m, se puede ver que un intervalo al 100(1 – a)% de confianza
+i
+para el contraste C está dado por:
+∑k CM ∑k
+cY ±t E c2
+i i• α/2,N−k n i
+i=1 i=1
+donde t es un punto porcentual de la distribución T de Student con N – k gra-
+a/2, N – k
+dos de libertad. En caso de que el intervalo contenga al cero se concluye que el con-
+traste C es estadísticamente igual a cero.
+Contrastes ortogonales Contrastes ortogonales
+Cuando la suma del producto En el caso de un diseño balanceado, dos contrastes C =Σk c μ y C =Σk cμ
+de los coeficientes de dos 1 i=1 1i i 2 i=1 2i i
+son ortogonales si la suma del producto de los coeficientes es igual a cero, esto es, si
+contrastes es igual a cero.
+Σ c c =0; para el diseño desbalanceado son ortogonales si Σ nc c =0. Dadas
+i=1 1i 2i i=1 i 1i 2i
+las k medias de interés correspondientes a k tratamientos objeto de estudio, se pue-
+den construir una infinidad de conjuntos de k – 1 contrastes ortogonales entre sí. En
+particular, con el uso de contrastes ortogonales es posible construir un grupo de hi-
+pótesis de interés independientes entre sí. Por ejemplo, en el problema de los k = 4
+métodos de ensamble se pueden construir grupos de contrastes ortogonales de tama-
+ño tres. Una posibilidad de elección se muestra en la siguiente tabla:
+c c c c Contrastes ortogonales
+1 2 3 4
+2 –1 –1 0 2m – m – m
+A B C
+0 1 –1 0 m – m
+B C
+1 1 1 –3 m + m + m – 3m
+A B C D
+Es fácil ver que los tres contrastes definidos en esta tabla son ortogonales entre
+sí. Por ejemplo, el primero y el segundo son ortogonales porque (2 × 0) + (–1 × 1) +
+(–1 × –1) + (0 × 0) = 0, y lo mismo pasa con los otros dos posibles productos. Obser-
+ve también que con cada contraste se puede definir una hipótesis estadística, como
+se hace en el siguiente método de Sheffé.
+Método de Sheffé Método de Sheffé
+Sirve para probar todos los con-
+Este método está diseñado para probar todos los contrastes de medias que pudieran
+trastes de medias que pudieran
+interesar al experimentador, sin el inconveniente de inflar por ello el error tipo I
+ser de interés, en particular
+(detección de diferencias que no existen). Supongamos que interesa contrastar las
+aquellos que involucran a más
+de dos medias. hipótesis
+H : 2m = m + m
+0 A B C
+(3.14)
+H : 2m π m + m
+A A B C
+donde la hipótesis nula se puede escribir alternativamente como H :2μ −μ μ− =0,
+0 A B C
+www.Flo cual irmplicea que lae hipótesiLs está deifinibda por elr contoraste C s=2μ − .μ μ o− . Der g
+0 A B C
+manera que el contraste estimado está dado por
+GGuuttiieerrrreezz--0033..iinndddd 8800 1122//1100//0077 1100::0088::2244Verificación de los supuestos del modelo 81
+Cˆ =2Y −Y −Y
+0 A B C
+y su varianza estimada es
+V(Cˆ )=CM
+∑c i2
+0 E n
+i
+donde n es el número de mediciones en el tratamiento i = A, B, C. Intervalos simul-
+i
+táneos al 100(1 – a)% de confianza para todos los contrastes tienen la forma
+Cˆ ± (k−1)V(Cˆ )F
+α,k−1,N−k
+ˆ
+donde C representa la estimación de cualquier posible contraste y F es el
+a, k – 1, N – k
+cuantil 100(1 – a) de una distribución F con k – 1 grados de libertad en el numerador,
+y N – k grados de libertad en el denominador. Si el intervalo resultante para un con-
+traste particular, digamos C , no contiene al cero, se concluye que el contraste es
+0
+significativamente diferente de cero, lo cual lleva a rechazar H . De manera equiva-
+0
+lente, el método de Sheffé rechaza la hipótesis nula si el contraste asociado es
+Cˆ > (k−1)V(Cˆ )F
+0 α,k−1,N−k
+Supongamos que en el ejemplo de los métodos de ensamble se quieren contras-
+tar las hipótesis dadas en la ecuación (3.14). Con las medias muestrales (tabla 3.7) se
+calcula el estadístico Cˆ = 2(7.25) – 8.50 – 12.75 = –6.75. La varianza del contraste
+0
+es V(Cˆ ) = 2.46(6)/4 = 3.69. Como (k−1)V(Cˆ )F = 3×3.69×3.49 =6.21
+0 α,k−1,N−k
+y Cˆ ==6.75, se rechaza la hipótesis H : 2μ =μ μ+ y se acepta la H : 2μ ≠
+0 0 A B C A A
+μ +μ .
+B C
+Verificación de los supuestos
+del modelo
+La validez de los resultados obtenidos en cualquier análisis de varianza queda supe-
+ditado a que los supuestos del modelo se cumplan. Estos supuestos son: normalidad,
+varianza constante (igual varianza de los tratamientos) e independencia. Esto es, la
+respuesta (Y ) se debe distribuir de manera normal, con la misma varianza en cada
+tratamiento y las mediciones deben ser independientes. Estos supuestos sobre Y se
+traducen en supuestos sobre el término error (e) en el modelo [véase expresión (3.2)].
+Es una práctica común utilizar la muestra de residuos para comprobar los supuestos Residuos
+del modelo, ya que si los supuestos se cumplen, los residuos o residuales se pueden Son generados por la diferencia
+ver como una muestra aleatoria de una distribución normal con media cero y varian- entre la respuesta observada y
+la respuesta predicha por el
+za constante. Los residuos, e , se definen como la diferencia entre la respuesta obser-
+ij modelo en cada prueba experi-
+ˆ
+vada (Y ) y la respuesta predicha por el modelo (Y ), lo cual permite hacer un
+ij ij mental.
+wwdiagnóstiwco más dire.cto Fde la calidrad deel modeleo, ya quLe su maginitubd señalar qué otan s.org
+bien describe a los datos el modelo. Veamos.
+GGuuttiieerrrreezz--0033..iinndddd 8811 1122//1100//0077 1100::0088::225582 CAPÍTULO 3 Experimentos con un solo factor (análisis de varianza)
+Recordemos de (3.2), que el modelo que se espera describa los datos en el DCA
+está dado por:
+Y = m + t + e (3.15)
+ij i ij
+donde Y (i = 1, 2, …, k; j = 1, 2, …, n) es el j-ésimo dato en el tratamiento i; m es la
+ij
+media global, t es el efecto del tratamiento i y e representa al error asociado con
+i ij
+la observación Y . Cuando se realiza el ANOVA, y sólo cuando éste resulta significa-
+ij
+tivo, entonces se procede a estimar el modelo ajustado o modelo de trabajo dado
+por:
+Yˆ =μˆ+τˆ (3.16)
+ij i
+donde Yˆ es la respuesta predicha, mˆ es la media global estimada y tˆ es el efecto es-
+ij i
+timado del tratamiento i; los gorros indican que son estimadores, es decir, valores
+calculados a partir de los datos del experimento. El término del error desaparece del
+modelo estimado, por el hecho de que su valor esperado es igual a cero (E(e ) = 0).
+– – ij–
+Como la media global se estima con Y y el efecto del tratamiento con Y – Y , el
+•• i• ••
+modelo ajustado del DCA se puede escribir como:
+Yˆ =Y +(Y −Y )=Y (3.17)
+ij •• i• •• i•
+Esto es, la respuesta predicha para cada observación es la media muestral del
+tratamiento correspondiente. De esta manera, el residual o residuo asociado a la
+observación Y está dado por
+ij
+e =Y −Yˆ =Y −Y
+ij ij ij ij i•
+Los supuestos del modelo lineal (3.15), en términos de los residuos, son:
+1. Los e siguen una distribución normal con media cero.
+ij
+2. Los e son independientes entre sí.
+ij
+3. Los residuos de cada tratamiento tienen la misma varianza s2.
+Para comprobar cada supuesto existen pruebas analíticas y gráficas que vere-
+mos a continuación. Por sencillez, muchas veces se prefieren las pruebas gráficas.
+Éstas tienen el inconveniente de que no son “exactas”, pero aun así, en la mayoría de
+las situaciones prácticas proporcionan la evidencia suficiente en contra o a favor
+de los supuestos. El uso de las pruebas gráficas requiere una fuerte evidencia visual
+para concluir que el supuesto en cuestión no se cumple, ya que se requiere que la
+evidencia en contra de un supuesto esté soportada por más de dos puntos. Cuando
+son uno o dos los puntos que se salen del comportamiento esperado de las gráficas
+se puede tratar de un problema de puntos aberrantes, no de violación del supuesto en
+cuestión. En ese caso debe investigarse la obtención de dichas mediciones atípicas,
+ya que ese tipo de puntos pueden afectar sensiblemente los resultados del análisis.
+Se puede utilizar una prueba analítica para subsanar las ambigüedades que sur-
+www.FreeLibros.org
+jan en la interpretación visual (subjetiva) de las gráficas.
+GGuuttiieerrrreezz--0033..iinndddd 8822 1122//1100//0077 1100::0088::2255Verificación de los supuestos del modelo 83
+Es mejor prevenir en lo posible que los supuestos no se violen, para ello se
+aplican los tres principios básicos del diseño de experimentos: repetición, aleatoriza-
+ción y bloqueo. Es fácil encontrar situaciones en las que por no aplicar alguno de
+estos principios no se cumplen los supuestos del modelo. Por ejemplo, por no alea-
+torizar el orden en que se corren las pruebas pueden surgir problemas con el supues-
+to de independencia.
+Normalidad
+Un procedimiento gráfico para verificar el cumplimiento del supuesto de normalidad
+de los residuos consiste en graficar los residuos en papel o en la gráfica de probabi- Gráfica de probabilidad
+lidad normal que se incluye casi en todos los paquetes estadísticos. Esta gráfica del Sirve para verificar visualmente
+tipo X-Y tiene las escalas de tal manera que si los residuos siguen una distribución si los datos siguen una distribu-
+ción de probabilidad específica.
+normal, al graficarlos tienden a quedar alineados en una línea recta; por lo tanto, si
+claramente no se alinean se concluye que el supuesto de normalidad no es correcto.
+Cabe enfatizar el hecho de que el ajuste de los puntos a una recta no tiene que ser
+perfecto, dado que el análisis de varianza resiste pequeñas y moderadas desviaciones
+al supuesto de normalidad. En las figuras 3.6a y 3.6b se representan, en la gráfica de
+probabilidad normal, dos aspectos de los residuos, en los cuales el supuesto de nor-
+malidad no se cumple.
+Gráfica de probabilidad en papel normal
+Consideremos los N residuos e que resultan del análisis de una varianza, o cualquier
+i
+conjunto de N datos de los cuales se quiere verificar su procedencia de una distribu-
+ción normal. Los pasos en la construcción de la gráfica de probabilidad normal para
+los residuos son los siguientes:
+1. Ordenar los N valores del menor al mayor y asignarles los rangos de 1 a N.
+Sean r, i = 1, 2,…, N, los datos en orden creciente.
+i
+2. Calcular una posición de graficación para cada dato en función de su rango
+y del total de observaciones como (i – 0.5)/N, i = 1, 2,…, N.
+3. El papel de probabilidad normal es un formato para realizar una gráfica del
+tipo X-Y, donde una de las escalas es lineal y la otra es logarítmica. Sobre
+el papel de probabilidad normal se dibujan las parejas (r, (i – 0.5)/N).
+i
+4. Dibujar una línea recta sobre los puntos para tratar de dilucidar si se ajustan
+a ella o no. La interpretación de la gráfica es subjetiva, pero muchas veces
+es suficiente para llegar a una conclusión razonable sobre la distribución
+que siguen los datos.
+Para ilustrar lo anterior, supongamos que los residuos son los siguientes 10
+datos: 48.8, 51.5, 50.6, 46.5, 41.7, 39.9, 50.4, 43.9, 48.6, 48.6. Los cálculos necesa-
+rios para obtener las parejas a graficar se muestran en la tabla 3.9.
+En el papel de probabilidad normal se grafican las parejas dadas por la primera
+y tercera columnas (r, (i – 0.5)/N), y la gráfica resultante se muestra en la figura 3.5a.
+www.i FreeLibros.org
+En ésta no hay evidencia suficiente en contra de la normalidad de los datos.
+GGuuttiieerrrreezz--0033..iinndddd 8833 1122//1100//0077 1100::0088::225584 CAPÍTULO 3 Experimentos con un solo factor (análisis de varianza)
+Tabla 3.9 Cálculos para realizar una gráfica de probabilidad normal.
+Dato r i Rango i (i – 0.5)/N Z i = F –1 ((i – 0.5)/N)
+39.9 1 0.05 –1.64
+41.7 2 0.15 –1.03
+43.9 3 0.25 –0.67
+46.5 4 0.35 –0.38
+48.6 5 0.5 0.00
+48.6 6 0.5 0.00
+48.8 7 0.65 0.38
+50.4 8 0.75 0.67
+50.6 9 0.85 1.03
+51.5 10 0.95 1.64
+Gráfica de probabilidad normal en papel ordinario
+A falta de papel de probabilidad normal, la gráfica de probabilidad también se puede
+hacer en papel ordinario con escalas equiespaciadas en ambos ejes. Para ello, prime-
+ro se obtiene el valor normal estandarizado Z que cumple la relación:
+i
+(i−0.5)
+=P(Z <Z )=Φ(Z ) (3.18)
+N i i
+donde F(Z) es la función de distribución normal estándar acumulada evaluada en Z.
+i i
+Es decir, Z
+=Φ−1(i−0.5).
+Las parejas a dibujar en el papel ordinario son (r, Z) (ver
+i N i i
+tabla 3.9). En la figura 3.5b se muestra la gráfica de probabilidad en papel ordinario
+para los mismos datos graficados en papel normal. Observe que es básicamente la
+misma gráfica. Los cálcul os necesarios para los Z se pueden hacer fácilmente en
+i
+Excel con la función: DISTR.NORM.ESTAND.INV y en Statgraphics con la fun-
+ción INVNORMAL.
+Además de la evaluación visual basada en la gráfica de probabilidad normal,
+existen varios métodos analíticos para contrastar la hipótesis H : Hay normalidad
+0
+contra H : No hay normalidad. Entre dichas pruebas se encuentran la ji-cuadrada
+A
+para bondad de ajuste, la prueba de Shapiro-Wilks y la prueba de Anderson-Darling,
+a) Papel normal b) Papel ordinario
+99.9 2.3
+99
+95 1.3
+80 Z
+i
+% 50 0.3
+20
+5 –0.7
+1
+0.1 –1.7
+39 42 45 48 51 54 39 42 45 48 51 54
+Dato r Dato r
+i i
+www.FreeLibros.org
+Figura 3.5 Gráfica de probabilidad en papel normal y en papel ordinario.
+GGuuttiieerrrreezz--0033..iinndddd 8844 1122//1100//0077 1100::0088::2255Verificación de los supuestos del modelo 85
+de las cuales, la de Shapiro-Wilks es una de las más recomendadas y que presenta-
+mos a continuación.
+Prueba de Shapiro-Wilks para normalidad
+Consideremos una muestra aleatoria de datos x , x , …, x que proceden de cierta
+1 2 n
+distribución desconocida denotada por F(x). Se quiere verificar si dichos datos fue-
+ron generados por un proceso normal, mediante las hipótesis estadísticas:
+H : Los datos proceden de una distribución normal (F(x) es normal).
+0
+H : Los datos no proceden de una distribución normal (F(x) no es normal).
+A
+Los pasos para la prueba de Shapiro-Wilks son: 1) Se ordenan los datos de
+menor a mayor. Denotemos los datos ordenados por X , X , …, X . 2) De la tabla
+(1) (2) (n)
+dada en el apéndice para este procedimiento se obtienen los coeficientes a , a , …,
+1 2
+a , donde k es aproximadamente n/2. 3) Se calcula el estadístico W definido como:
+k
+1 ⎡ ∑k ⎤ 2
+W = ⎢ a (X −X )⎥ (3.19)
+(n−1)S2
+⎣
+i (n−i+1) (i)
+⎦
+i=1
+donde S2 es la varianza muestral. 4) Por último, si el valor del estadístico es mayor
+que su valor crítico al nivel a seleccionado en la tabla del apéndice, se rechaza la
+normalidad de los datos.
+Para ilustrar la prueba de Shapiro-Wilks consideremos otra vez los mismos
+datos de las gráficas de probabilidad normal. De acuerdo con los datos ordenados,
+parte del procedimiento posterior al paso 2 para calcular el estadístico W se resume
+en la tabla que se presenta más adelante.
+La varianza es S2 = 15.72. Con la fórmula de la ecuación (3.19) se obtiene que
+1
+W = [11.26]2 =0.896
+(10−1)15.72
+i a (X – X ) a ( X – X )
+i (n – i + 1) (i ) i (n – i + 1) (i )
+1 0.5739 51.5 – 39.9 = 11.6 6.66
+2 0.3291 50.6 – 41.7 = 8.9 2.93
+3 0.2141 50.4 – 43.9 = 6.5 1.39
+4 0.1224 48.8 – 46.5 = 2.3 0.28
+5 0.0399 48.6 – 48.6 = 0 0.00
+Con el tamaño de muestra n = 10, en la tabla de valores críticos dada en el
+apéndice se lee que el cuantil 95 es W = 0.987. Como W es menor que W se
+1 – 0.05 1 – a
+acepta que los datos proceden de una distribución normal, que concuerda con lo que
+se observó en las gráficas de probabilidad de la figura 3.5.
+Varianza constante
+Varianza constante
+Una forma de verificar el supuesto de varianza constante (o que los tratamientos
+Supuesto del ANOVA que se
+tienen la misma varianza) es graficando los predichos contra los residuos (Yˆ vs. e),
+www.FreeLibrij oi cusmple cua.ndo olos tratamiren- g
+por lo general Yˆ va en el eje horizontal y los residuos en el eje vertical. Si los puntos
+ij tos tienen la misma varianza.
+GGuuttiieerrrreezz--0033..iinndddd 8855 1122//1100//0077 1100::0088::226686 CAPÍTULO 3 Experimentos con un solo factor (análisis de varianza)
+en esta gráfica se distribuyen de manera aleatoria en una banda horizontal (sin ningún
+patrón claro y contundente), entonces es señal de que se cumple el supuesto de que
+los tratamientos tienen igual varianza. Por el contrario, si se distribuyen con algún
+patrón claro y contundente, como por ejemplo una forma de “corneta o embudo”,
+entonces es señal de que no se está cumpliendo el supuesto de varianza constante
+(figura 3.6c). Un claro embudo en los residuales indicará que el error de pronóstico
+del modelo tiene una relación directa (positiva o negativa) con la magnitud del pro-
+nóstico (predicho).
+Otra gráfica que ayuda a verificar el supuesto es la gráfica de niveles de factor
+contra residuos. En el eje X de esta gráfica se ponen los tratamientos o los niveles de
+un factor, y en el eje vertical se agregan los residuos correspondientes a cada trata-
+miento o nivel de factor. Si se cumple el supuesto de varianza constante, se espera
+que la amplitud de la dispersión de los puntos en cada nivel de factor tenderá a ser
+similar; y no se cumplirá el supuesto si hay diferencias fuertes en esta amplitud,
+a)
+99.9
+99
+95
+80
+50
+20
+5
+1
+0.1
+–10 –6 –2 2 6 10 14
+Figura 3.6 Ejemplos de gráficas de residuos donde no se cumplen los supuestos
+para el ANOVA.
+nóicroporP
+b)
+99.9
+99
+95
+80
+50
+20
+5
+1
+0.1
+–10 –6 –2 2 6 10 14
+Residuos
+nóicroporP
+Residuos
+c)
+13
+9
+5
+1
+–3
+–7
+–11
+Predichos
+soudiseR
+d)
+13
+9
+5
+1
+–3
+–7
+–11
+Factor
+soudiseR
+e) f )
+13 13
+9 9
+5 5
+1 1
+–3 –3
+–7 –7
+–11 –11
+Orden de corrida Orden de corrida
+www.FreeLibros.org
+GGuuttiieerrrreezz--0033..iinndddd 8866 1122//1100//0077 1100::0088::2266Verificación de los supuestos del modelo 87
+como se muestra en la figura 3.6d. En la interpretación de esta gráfica debe conside-
+rarse que, en estadística, las pequeñas diferencias por lo general no son significati-
+vas, y también debe tomarse en cuenta la cantidad de observaciones hechas en cada
+nivel del factor, puesto que este hecho puede impactar la dispersión aparente en
+cada tratamiento.
+Otra interpretación de la gráfica de factor contra residuos es que cuando los
+tratamientos o niveles muestran una dispersión diferente de sus residuales correspon-
+dientes (como en la figura 3.6d), es que el factor o los tratamientos tienen un efecto
+significativo sobre la variabilidad de la respuesta.
+Con base en esta información se podría proponer un nivel de operación para
+dicho factor que minimice la dispersión y optimice la media.
+Así, cuando hay una evidencia contundente en las gráficas anteriores, donde no
+se cumple el supuesto de varianza constante, entonces se debe ver en qué sentido
+resultan afectadas las conclusiones que se obtienen con el ANOVA y las pruebas de
+rangos múltiples. Por ejemplo, si se aprecia que el mejor tratamiento también es el
+que tiene menor dispersión, entonces se debe mantener tal tratamiento como la elec-
+ción correcta, y ver si es de interés investigar por qué la diferencia en variabilidad
+con algunos de los otros tratamientos. Pero, si al que se le considera el mejor trata-
+miento es el que tiene la varianza más grande, entonces es difícil mantenerlo como
+la elección correcta. En este caso se debe replantear la decisión y el análisis. Una
+forma de volver a hacer el análisis y reconsiderar la situación es transformar los da-
+tos u observaciones Y , de manera que se disminuyan las diferencias en dispersión y
+ij
+se pueda ver más claramente lo que ha pasado en el experimento. Existe una gran
+cantidad de transformaciones propuestas que logran lo anterior, entre las más fre-
+cuentes se encuentran la logarítmica y la raíz cuadrada. La transformación se hace de
+la siguiente manera: se saca logaritmo a los datos u observaciones por ejemplo, y con
+los datos transformados se vuelve a hacer el análisis completo. En la sección “Trans-
+formaciones para estabilizar varianzas” del capítulo 5 aborda el tema con detalle.
+En general, siempre se debe investigar por qué no se ha cumplido el supuesto
+de varianza constante, ya que eso ayuda a entender mejor el proceso o sistema con el
+que se experimenta. Por ejemplo, una razón frecuente que hace que tal supuesto no
+se cumpla es que algunas variables tienen una dispersión directamente proporcional
+a su magnitud, de tal forma que si sus valores son pequeños, éstos tienden a ser más
+homogéneos en comparación con la variabilidad que entre sí tienen los valores gran-
+des. Ahora veamos una prueba analítica para la igualdad de varianzas.
+Prueba de Bartlett para homogeneidad de varianzas
+Supongamos que se tienen k poblaciones o tratamientos independientes, cada uno
+con distribución normal (N( m, s 2), i = 1, 2, …, k), donde las varianzas son descono-
+i i
+cidas. Se quiere probar la hipótesis de igualdad de varianzas dada por:
+H :σ2 =σ2 =…=σ2 =σ2
+0 1 2 k (3.20)
+H :σ2 ≠σ2 paraalgúnii≠ j
+A i j
+Mediante un diseño completamente al azar se obtienen k muestras aleatorias de
+www.FreeLibros.org
+tamaños n (i = 1, 2, …, k) de dichas poblaciones, de modo que el total de mediciones
+i
+GGuuttiieerrrreezz--0033..iinndddd 8877 1122//1100//0077 1100::0088::226688 CAPÍTULO 3 Experimentos con un solo factor (análisis de varianza)
+es N = n + n + … + n . El estadístico de prueba para la hipótesis (3.20) está dado
+1 2 k
+por
+q
+χ2 =2.3026
+0 c
+donde
+∑k
+q=(N−k)log S2− (n −1)log S2
+10 p i 10 i
+i=1
+y
+c=1+
+1 ⎛
+⎜
+∑k
+(n
+−1)−1−(N−k)−1⎞
+⎟
+3(k−1)⎝ i ⎠
+i=1
+con
+∑k
+(n −1)S2
+S2 = i=1 i i
+p N−k
+donde S 2 es la varianza muestral del tratamiento i. Bajo la hipótesis nula de igualdad
+i
+de varianza, el estadístico c 2 sigue una distribución ji-cuadrada con k – 1 grados de
+0
+libertad, por lo que se rechaza H cuando c 2es más grande que c 2 .Observe que
+0 0 (a, k – 1)
+el estadístico q, en el numerador del estadístico c 2, es grande en la medida de que las
+0
+varianzas muestrales S 2 son diferentes y es igual a cero cuando éstas son iguales.
+i
+La prueba de Bartlett que acabamos de describir es sensible a la falta de norma-
+lidad de las poblaciones de interés, por lo que debe comprobarse el cumplimiento de
+este supuesto.
+Independencia
+La suposición de independencia en los residuos puede verificarse si se grafica el or-
+den en que se colectó un dato contra el residuo correspondiente. De esta manera, si
+al graficar en el eje horizontal el tiempo (orden de corrida) y en el eje vertical los
+residuos, se detecta una tendencia o patrón no aleatorio claramente definido, esto es
+evidencia de que existe una correlación entre los errores y, por lo tanto, el supuesto
+de independencia no se cumple (véanse figuras 3.6e y 3.6f ). Si el comportamiento de
+los puntos es aleatorio dentro de una banda horizontal, el supuesto se está cumplien-
+do. La violación de este supuesto generalmente indica deficiencias en la planeación
+y ejecución del experimento; asimismo, puede ser un indicador de que no se aplicó
+en forma correcta el principio de aleatorización, o de que conforme se fueron reali-
+zando las pruebas experimentales aparecieron factores que afectaron la respuesta
+observada. Por ello, en caso de tener problemas con este supuesto, las conclusiones
+que se obtienen del análisis son endebles y por ello es mejor revisar lo hecho y tratar
+de investigar por qué no se cumplió con ese supuesto de independencia, a fin de re-
+considerar la situación.
+Una prueba analítica para verificar la independencia entre residuos consecutivos
+es la prueba de Durbin-Watson, que se presenta en el capítulo 11. El problema con
+dicha prueba es que no es capaz de detectar otros patrones de correlación entre resi-
+www.FreeLibros.org
+duos (no consecutivos) que también son violatorios del supuesto de independencia.
+GGuuttiieerrrreezz--0033..iinndddd 8888 1122//1100//0077 1100::0088::2277Elección del tamaño de la muestra 89
+Tabla 3.10 Residuos para ejemplo 3.2.
+Cuero Observado Predicho Residuo Cuero Observado Predicho Residuo
+– – – –
+Y Y e = Y – Y Y Y e = Y – Y
+i j i • i j i j i • i j i • i j i j i •
+A 264 256.7 7.33 A 262 256.7 5.33
+C 220 230.8 –10.83 D 220 220.7 –0.67
+B 208 209.8 –2.5 A 255 256.7 –1.67
+B 220 209.8 9.5 B 200 209.8 –10.5
+A 260 256.7 3.33 D 222 220.7 1.33
+A 258 256.7 1.33 B 213 209.8 2.5
+D 217 220.7 –3.67 A 241 256.7 –15.67
+C 263 230.8 32.17 C 228 230.8 –2.83
+D 229 220.7 5.83 B 206 209.8 –4.5
+C 219 230.8 –11.83 C 230 230.8 –0.83
+B 216 209.8 5.5 D 215 220.7 –5.67
+C 225 230.8 –5.83 D 224 220.7 3.33
+Ejemplo 3.6
+(Continuación del análisis para comparar cuatro tipos de cuero). En el ejem-
+plo 3.2 se compararon cuatro tipos de cuero en cuanto a su desgaste, y mediante el
+ANOVA se concluyó que los cueros tienen un desgaste promedio diferente (ver tabla
+3.5). Falta ver que se cumplan los supuestos del ANOVA. Para ello, primero se cal-
+culan los residuos de las 24 mediciones, restando a cada valor observado su corres-
+–
+pondiente predicho, que en este caso como Yˆ = Y se debe restar la media del
+ij i •
+tratamiento correspondiente. Los 24 residuos se listan en la tabla 3.10.
+Con la muestra de 24 residuos se procede a dibujar las gráficas de residuos en
+papel de probabilidad normal, residuos contra predichos y residuos contra orden de
+corrida. Las gráficas resultantes se muestran en las figuras 3.7a, b y c. Se observa el
+cumplimiento de los supuestos de normalidad, varianza constante e independencia,
+respectivamente. Sin embargo, en las tres gráficas es notorio un punto que se aleja
+bastante del resto, el cual es un punto aberrante cuyo origen debe investigarse. En la
+tabla 3.10 se encuentra que este residuo grande de valor 32.17 y que corresponde a
+la prueba 8 con una medición de 263 en el tipo de cuero C. Debe verificarse que no
+haya ningún error con este dato. Cuando un punto aberrante no se percibe, puede
+afectar sensiblemente las conclusiones del análisis del experimento.
+Elección del tamaño de la muestra
+Una decisión importante en cualquier diseño de experimentos es decidir el número
+de réplicas que se hará por cada tratamiento (tamaño de muestra). Por lo general, si
+se esperan diferencias pequeñas entre tratamientos será necesario un mayor tama-
+ño de muestra. Aunque existen varios métodos para estimar el tamaño muestral,
+muchas veces tienen poca aplicabilidad porque requieren cierto conocimiento previo
+sobre la varianza del error experimental.
+Si recurrimos a la experiencia vemos que el número de réplicas en la mayoría
+www.FreeLibros.org
+de las situaciones experimentales en las que se involucra un factor varía entre cinco
+GGuuttiieerrrreezz--0033..iinndddd 8899 1122//1100//0077 1100::0088::227790 CAPÍTULO 3 Experimentos con un solo factor (análisis de varianza)
+a) Residuos en papel normal
+99.9
+99
+95
+80
+50
+20
+5
+1
+0.1
+Figura 3.7 Gráficas de residuos para los tipos de cuero.
+y diez; incluso, en algunos casos puede llegar hasta 30. La tendencia podría inclinar-
+se por un extremo de este rango e incluso salirse de éste, de acuerdo con las siguien-
+tes consideraciones:
+• A menor diferencia que se espera en los tratamientos, mayor será la canti-
+dad de réplicas si se quieren detectar diferencias significativas, y viceversa,
+es decir, si se esperan grandes diferencias quizá con pocas réplicas sea sufi-
+ciente.
+• Si se espera mucha variación dentro de cada tratamiento, debido a la varia-
+ción de fuentes no controladas como métodos de medición, medio ambiente,
+materia prima, etc., entonces se necesitarán más réplicas.
+• Si son varios tratamientos (cuatro o más), entonces éste es un punto favora-
+ble para reducir el número de réplicas.
+Además de lo anterior, es preciso considerar los costos y el tiempo global del
+experimento. De aquí que si se toman en cuenta las consideraciones antes expuestas
+se podrá establecer el tamaño de muestra que permita responder en una primera fase
+las preguntas más importantes que se plantearon con el experimento.
+dadilibaborP
+b) Predichos vs. residuos
+47
+27
+7
+–13
+–33
+–16 –6 4 14 24 34 210 220 230 240 250 260
+Residuos Predichos
+soudiseR
+c) Orden vs. residuos
+47
+27
+7
+–13
+–33
+Orden (tiempo)
+soudiseR
+0 4 8 12 16 20 24
+www.FreeLibros.org
+GGuuttiieerrrreezz--0033..iinndddd 9900 1122//1100//0077 1100::0088::2277Uso del software computacional 91
+Elección del tamaño de muestra por intervalo de confianza
+Supongamos que el experimentador ya tiene el número de tratamientos que desea
+probar, k, y que tomando en cuenta las consideraciones antes citadas tiene una pro-
+puesta inicial del número de réplicas por tratamiento que va a utilizar, n . También
+0
+tiene una idea aproximada del valor de s (la desviación estándar del error aleatorio),
+así como una idea de la magnitud de las diferencias, d , entre tratamientos que le
+T
+interesa detectar. Por ejemplo, supongamos que en el caso de los tiempos promedio
+de los k = 4 métodos de ensamble (ejemplo 3.1), tiene idea de realizar n = 5 pruebas;
+0
+en cuanto a las diferencias, le interesa detectar 2 minutos, d = 2 entre un método y
+T
+otro, y espera que cada método tenga una variabilidad intrínseca de s = 1.5; esto
+debido a factores no controlados (habilidad del operador, cansancio, variabilidad de
+las partes a ensamblar, error de medición del tiempo de ensamble, etcétera).
+Ahora recordemos que en las comparaciones o pruebas de rangos múltiples, la
+diferencia mínima significativa entre tratamientos está dada por la expresión (3.12):
+LSD=t 2CM /n
+(α/2,N−k) E
+despejando n de aquí, obtenemos:
+( )
+2
+2 t CM
+n= (α/2,N−k) E
+(LSD)2
+Si la significancia es a = 0.05, entonces en esta fórmula se hacen las siguientes
+sustituciones: N = k × n , CM = s2, LSD = d ; de esta forma, el tamaño de muestra
+0 E T
+que tentativamente se debe usar está dado por,
+( )
+2
+2 t s2
+n= (0.025,k×n0−k)
+(d )2
+T
+El valor de n arrojado por esta fórmula dará una idea del número de réplicas por
+tratamiento, de acuerdo con las consideraciones iniciales que se reflejan a través de
+(k, n , s, d ), y sobre todo por el número total de corridas experimentales, N = k × n,
+0 T
+que es lo que muchas veces interesa más al experimentador debido a los costos y
+tiempos. Si N está fuera del presupuesto se podrán revisar algunas consideraciones
+y quizá pensar en un número menor de tratamientos.
+Al aplicar esta expresión al caso de los cuatro métodos de ensamble obtenemos:
+2(t )2 (1.5)2 2(2.131)2 (1.5)2
+n= (0.025,15) = =5.1
+(2)2 ((2)2
+Por lo tanto, n = 5 se debería utilizar como tamaño de muestra (número de
+pruebas por tratamiento).
+Uso de software computacional
+Casi cualquier software estadístico incluye procedimientos para realizar análisis de
+www.FreeLibros.org
+varianza, comparar tratamientos y hacer análisis relacionados. En términos generales,
+GGuuttiieerrrreezz--0033..iinndddd 9911 1122//1100//0077 1100::0088::227792 CAPÍTULO 3 Experimentos con un solo factor (análisis de varianza)
+en una columna se registra el código para cada tratamiento corrido (se ponen tantos
+renglones como pruebas hechas), y en otra columna se registran los valores corres-
+pondientes obtenidos para Y. Con esto, en Statgraphics el análisis de los diseños
+comparativos se realiza básicamente en la opción Compare del menú principal.
+La secuencia para un diseño completamente al azar es: Compare Æ Analysis of
+variance Æ One-way anova. En las opciones del procedimiento aparecen todas las
+pruebas y análisis que se han descrito en este capítulo.
+Otra posibilidad en Statgraphics es accesar con la siguiente secuencia de opcio-
+nes: Special Æ Experimental Design Æ Create Design, después de esto se debe elegir
+el tipo de diseño, que en este caso es Single Factor Categorical. Enseguida se defi-
+ne el número de niveles (tratamientos) y el nombre de los mismos. También se debe
+definir el nombre de la(s) variable(s) de respuesta(s). En la siguiente pantalla se
+pedirá el número de réplicas adicionales a la básica (si se pide una, en total se tendrán
+dos al considerar la réplica básica) y también aparece la opción de aleatorizar el or-
+den para correr las pruebas, que siempre debe utilizarse en un diseño completamente
+aleatorizado. Todo esto permitirá generar una columna en la que se incluyen todas las
+pruebas a ser corridas, y una columna en blanco para cada variable de respuesta, la
+cual debe ser llenada en la medida que se vayan obteniendo los resultados del expe-
+rimento. De la versión 15 de Statgraphics en adelante, la secuencia para crear diseños
+es DOE Æ Design Creation.
+Para hacer el análisis, una vez generado el archivo de datos con los tratamientos
+y las respuestas, se siguen las opciones: Special Æ Experimental Design Æ Analyze
+Design, después se da el nombre de la variable de respuesta a analizar, y entonces se
+tendrá acceso a un conjunto de opciones de análisis tanto gráficas como analíticas,
+entre ellas las que hemos comentado en este capítulo.
+En Minitab se registran los datos en dos columnas, como ya se dijo, y al ANOVA
+se accesa con la secuencia Stat Æ Anova Æ One way, y se da el nombre de las co-
+lumnas que contienen los datos. También se eligen las comparaciones de medias
+deseadas y las gráficas.
+Uso de Excel
+El ANOVA de un diseño con un criterio de clasificación se realiza con la secuencia:
+Herramientas Æ Análisis de datos Æ Análisis de varianza con un factor. Si no estu-
+viera activada la opción de Análisis de datos, se utiliza la opción de Complementos
+dentro del mismo menú de Herramientas. Entonces, se declara el rango de los datos,
+que pueden estar acomodados por columnas o por renglones. La salida contiene las
+estadísticas básicas de cada una de las muestras y el ANOVA correspondiente.
+Preguntas y ejercicios
+1. Explique en qué consiste y cuándo se debe aplicar el diseño completamente al azar con
+un solo criterio de clasificación.
+2. Supongamos que se desea probar la igualdad entre sí de cinco medias. Una alternativa
+www.Fparra haceer esto seería compLarar de dios ben dos lras meodias, utilsizando la. pruoeba T der g
+Student y al final tomar una decisión. Explique por qué esto aumenta el error tipo I.
+GGuuttiieerrrreezz--0033..iinndddd 9922 1122//1100//0077 1100::0088::2288
