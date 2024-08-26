@@ -1,0 +1,3 @@
+Captura la ROI de cada ojo
+
+Permite decidir si se quiere usar un solo ojo o los dos.
