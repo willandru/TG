@@ -1,2 +1,0 @@
-import pygds
-help(pygds)
