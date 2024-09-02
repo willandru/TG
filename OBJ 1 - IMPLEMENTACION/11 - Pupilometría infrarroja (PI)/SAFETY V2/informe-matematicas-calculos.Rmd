@@ -1,0 +1,161 @@
+---
+title: "Cálculo del Flujo Radiante y la Exposición Máxima Permisible (EMP)"
+author: "willandru"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Introducción
+
+En este documento, calcularemos el flujo radiante de un LED infrarrojo (IR) y determinaremos la Exposición Máxima Permisible (EMP) para diferentes tiempos de exposición. El objetivo es evaluar la seguridad de la exposición a este LED IR cuando está ubicado a 1 cm de los ojos. Seguiremos los siguientes pasos:
+
+1. **Convertir los parámetros a unidades del Sistema Internacional (SI).**
+2. **Calcular el ángulo sólido en esteradianes.**
+3. **Calcular el flujo radiante.**
+4. **Calcular la irradiancia.**
+5. **Determinar la EMP basada en el tiempo de exposición.**
+6. **Verificar si la irradiancia está dentro de los límites seguros.**
+
+## Parámetros
+
+Los parámetros utilizados son:
+
+- Intensidad Radiante \( I_e = 15 \, \text{mW/sr} \)
+- Diámetro del LED \( d = 5 \, \text{mm} \)
+- Distancia desde el LED \( r = 1 \, \text{cm} \)
+- Longitud de Onda \( \lambda = 940 \, \text{nm} \)
+- Ángulo de Visión \( \theta = 30^\circ \)
+
+## Conversión a Unidades del SI
+
+Convertimos el diámetro y la distancia a metros:
+
+\[
+d = \frac{5 \, \text{mm}}{1000} = 0.005 \, \text{m}
+\]
+
+\[
+r = \frac{1 \, \text{cm}}{100} = 0.01 \, \text{m}
+\]
+
+Convertimos el ángulo de visión a radianes:
+
+\[
+\theta_{\text{rad}} = 30^\circ \times \frac{\pi}{180} = \frac{\pi}{6} \, \text{rad}
+\]
+
+## Cálculo del Ángulo Sólido
+
+El ángulo sólido \( \Omega \) en esteradianes se calcula con:
+
+\[
+\Omega = 2 \pi \left(1 - \cos \left(\frac{\theta}{2}\right)\right)
+\]
+
+## Cálculo del Flujo Radiante
+
+El flujo radiante \( \Phi_e \) en vatios es:
+
+\[
+\Phi_e = I_e \times \Omega \times 10^{-3}
+\]
+
+## Cálculo de la Irradiancia
+
+La irradiancia \( E \) se calcula con:
+
+\[
+E = \frac{\Phi_e}{\pi \left(\frac{d}{2}\right)^2}
+\]
+
+## Exposición Máxima Permisible (EMP)
+
+La EMP depende del tiempo de exposición \( t \) y se calcula con:
+
+\[
+\text{EMP} = 7 \times 10^{-4} \times c_4 \times \frac{E}{\alpha_{\text{min}}}
+\]
+
+donde:
+
+\[
+c_4 = 100.002^{(\lambda - 700)}
+\]
+
+\(\alpha_{\text{min}}\) depende del tiempo de exposición \( t \):
+
+\[
+\alpha_{\text{min}} =
+\begin{cases} 
+1.5 \, \text{mrad} & \text{si } t \leq 0.7 \, \text{s} \\
+2 \times t^{3/4} \, \text{mrad} & \text{si } 0.7 < t \leq 10 \, \text{s} \\
+11 \, \text{mrad} & \text{si } t > 10 \, \text{s}
+\end{cases}
+\]
+
+## Verificación de Seguridad
+
+Comparamos la irradiancia con los valores de EMP para diferentes tiempos de exposición para determinar si el LED es seguro.
+
+## Código en R
+
+```{r}
+# Cargar las librerías necesarias
+library(dplyr)
+
+# Parámetros
+intensidad_radiante <- 15 # mW/sr
+diametro_mm <- 5 # mm
+distancia_cm <- 1 # cm
+longitud_onda_nm <- 940 # nm
+angulo_vision_deg <- 30 # grados
+
+# Convertir parámetros a unidades del SI
+diametro_m <- diametro_mm / 1000 # metros
+distancia_m <- distancia_cm / 100 # metros
+angulo_vision_rad <- angulo_vision_deg * pi / 180 # radianes
+
+# Convertir ángulo de visión a ángulo sólido en esteradianes
+angulo_solidario <- 2 * pi * (1 - cos(angulo_vision_rad / 2))
+
+# Calcular flujo radiante (en vatios)
+flujo_radiante <- intensidad_radiante * angulo_solidario * 1e-3 # convertir mW a W
+
+# Calcular irradiancia
+irradiancia <- flujo_radiante / (pi * (diametro_m / 2)^2) # W/m^2
+
+# Definir función para calcular EMP
+calcular_emp <- function(tiempo_exposicion_sec, longitud_onda_nm) {
+  c4 <- 100.002 * (longitud_onda_nm - 700)
+  
+  # Determinar alpha_min basado en el tiempo de exposición
+  if (tiempo_exposicion_sec <= 0.7) {
+    alpha_min <- 1.5 # mrad para tiempos de exposición cortos
+  } else if (tiempo_exposicion_sec <= 10) {
+    alpha_min <- 2 * tiempo_exposicion_sec^(3/4) # mrad
+  } else {
+    alpha_min <- 11 # mrad para tiempos de exposición largos
+  }
+  
+  # Cálculo de EMP
+  emp <- 7 * 10^(-4) * c4 * (irradiancia / alpha_min) # W/m^2
+  return(emp)
+}
+
+# Definir tiempos de exposición
+tiempos_exposicion <- c(10 * 60, 1 * 3600, 10 * 3600) # 10 min, 1 hr, 10 hrs en segundos
+
+# Calcular EMP para cada tiempo de exposición
+valores_emp <- sapply(tiempos_exposicion, function(t) calcular_emp(t, longitud_onda_nm))
+
+# Imprimir resultados
+print(paste("Irradiancia: ", round(irradiancia, 2), "W/m^2"))
+print("Valores de Exposición Máxima Permisible (EMP):")
+names(valores_emp) <- c("10 minutos", "1 hora", "10 horas")
+print(valores_emp)
+
+# Verificar si la irradiancia está dentro de los límites seguros
+verificacion_seguridad <- sapply(valores_emp, function(emp) irradiancia < emp)
+names(verificacion_seguridad) <- c("10 minutos", "1 hora", "10 horas")
+print("Verificación de Seguridad:")
+print(verificacion_seguridad)
