@@ -1,1 +1,3 @@
 - avisar los rchivos que han sido creados y el path donde han sido almacenados.
+
+-hay unos errores en cuato a la adquisicion el video, el nombre del alcrchivo, tiene problemas para poner la hora correcta. Si se toman varios videos durante el mismo minute e puede evidenciar el problema.
