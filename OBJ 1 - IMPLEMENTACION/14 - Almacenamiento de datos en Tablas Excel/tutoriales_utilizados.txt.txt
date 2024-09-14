@@ -1,0 +1,6 @@
+WRITE SREADSHEET
+https://www.youtube.com/watch?v=cFLnYqGZC7E&t=28s&ab_channel=LabVIEWADVANTAGE
+
+READ
+
+https://www.youtube.com/watch?v=mEaItrTA-cI&list=LL&index=37&ab_channel=LabVIEWADVANTAGE
