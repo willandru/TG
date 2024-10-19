@@ -47,11 +47,11 @@ d.SetScaling(current_scaling)
 d.SetConfiguration()
 
 # Define file to save the data
-output_file = 'emg_data_abrir.csv'
+output_file = 'emg_100_nada.csv'
 
 # Initialize variables for data acquisition
 samples_received = 0
-record_duration = 60  # 1 minute
+record_duration = 100  # seconds
 start_time = time.time()
 
 # Open the file to write data

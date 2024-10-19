@@ -16,9 +16,9 @@ d = pygds.GDS()
 
 
 # Aumentar la escala del algún canal.
-current_scaling = d.GetScaling()
-current_scaling[0].ScalingFactor = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
-d.SetScaling(current_scaling)
+#current_scaling = d.GetScaling()
+#current_scaling[0].ScalingFactor = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+#d.SetScaling(current_scaling)
 
 print(d.GetScaling())
 #Fija la configuración anterior en el dispositivo
