@@ -15,11 +15,17 @@ print(result)
 d = pygds.GDS()
 
 
+# Select 'Sampling Rate' and 'Number of Scans'
+f_s_2 = sorted(d.GetSupportedSamplingRates()[0].items())[6]
+d.SamplingRate, d.NumberOfScans = f_s_2
+
+print(f_s_2)
+
 # Aumentar la escala del algún canal.
 #current_scaling = d.GetScaling()
 #current_scaling[0].ScalingFactor = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
 #d.SetScaling(current_scaling)
 
-print(d.GetScaling())
+#print(d.GetScaling())
 #Fija la configuración anterior en el dispositivo
 d.SetConfiguration()

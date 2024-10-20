@@ -47,7 +47,7 @@ d.SetScaling(current_scaling)
 d.SetConfiguration()
 
 # Define file to save the data
-output_file = 'emg_100_nada.csv'
+output_file = 'emg_200_abrir_3.csv'
 
 # Initialize variables for data acquisition
 samples_received = 0
