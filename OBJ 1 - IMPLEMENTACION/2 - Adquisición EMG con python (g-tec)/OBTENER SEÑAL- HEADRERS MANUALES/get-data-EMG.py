@@ -47,11 +47,11 @@ d.SetScaling(current_scaling)
 d.SetConfiguration()
 
 # Define file to save the data
-output_file = 'emg_200_abrir_3.csv'
+output_file = 'PRUEBA_5S_2.csv'
 
 # Initialize variables for data acquisition
 samples_received = 0
-record_duration = 100  # seconds
+record_duration = 5  # seconds
 start_time = time.time()
 
 # Open the file to write data
@@ -72,7 +72,7 @@ with open(output_file, 'w') as f:
 
     # Signal acquisition loop
     while time.time() - start_time < record_duration:
-        data = d.GetData(d.SamplingRate, more=save_samples)
+        data = d.GetData(d.SamplingRate//2, more=save_samples)
         if time.time() - start_time >= record_duration:
             break
 

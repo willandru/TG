@@ -1,11 +1,18 @@
-# File path to your EMG data
-file_path = 'emg_6_abrir.csv'
+import pygds
+import numpy as np
+from scipy import io
+from datetime import datetime
 
-# Read the file
-with open(file_path, 'r') as f:
-    lines = f.readlines()
+# Define the paths to the headers
+gNEEDaccessHeaders = [
+    r"C:/Users/willa/OneDrive/Documents/gtec/gNEEDaccessClientAPI/C/GDSClientAPI.h",
+    r"C:/Users/willa/OneDrive/Documents/gtec/gNEEDaccessClientAPI/C/GDSClientAPI_gHIamp.h",
+    r"C:/Users/willa/OneDrive/Documents/gtec/gNEEDaccessClientAPI/C/GDSClientAPI_gNautilus.h",
+    r"C:/Users/willa/OneDrive/Documents/gtec/gNEEDaccessClientAPI/C/GDSClientAPI_gUSBamp.h"
+]
 
-# Check the number of values in the first few lines
-for i in range(5):  # You can change the range to check more lines if needed
-    values = lines[i].split(',')
-    print(f"Line {i+1} has {len(values)} values.")
+# Initialize pygds with headers
+result = pygds.Initialize(gds_headers=gNEEDaccessHeaders)
+print(result)
+
+print(pygds.ConnectedDevices())
