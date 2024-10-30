@@ -28,6 +28,9 @@ d = pygds.GDS()
 f_s_2 = sorted(d.GetSupportedSamplingRates()[0].items())[6]
 d.SamplingRate, d.NumberOfScans = f_s_2
 
+
+BLOCK_SIZE = d.SamplingRate//48
+
 # Activate a specific channel
 for i, channel in enumerate(d.Channels):
     if i == 0:
@@ -47,10 +50,10 @@ d.SetConfiguration()
 
 # Initialize the Scope for live data viewing
 scope = pygds.Scope(1 / d.SamplingRate)
-
+BLOCK_SIZE = d.SamplingRate // 48 
 # Start acquiring data and sending it to the scope for live viewing
 print("Starting live data scope...")
-d.GetData(d.SamplingRate//8, more=scope)
+d.GetData(BLOCK_SIZE, more=scope)
 
 # Close the connection with the g-tec device after viewing
 d.Close()

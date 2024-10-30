@@ -50,7 +50,7 @@ d.SetConfiguration()
 samples_received = 0
 record_duration = 5  # seconds
 start_time = time.time()
-
+BLOCK_SIZE = d.SamplingRate//48 # 40 ms window
 # Function to handle data acquisition and print to the console
 def print_samples(s):
     global samples_received
@@ -65,7 +65,7 @@ def print_samples(s):
 
 # Signal acquisition loop
 while time.time() - start_time < record_duration:
-    data = d.GetData(d.SamplingRate//8, more=print_samples)
+    data = d.GetData(BLOCK_SIZE, more=print_samples)
     if time.time() - start_time >= record_duration:
         break
 
