@@ -19,7 +19,7 @@ def start_server():
         try:
             while True:
                 # Generar un array de N números aleatorios de tipo double
-                data = [random.uniform(0.0, 1.0) for _ in range(100)]
+                data = [random.uniform(0.0, 1.0) for _ in range(11)]
                 print(f"Enviando datos: {data}")
 
                 # Convertir el array a bytes
@@ -35,7 +35,7 @@ def start_server():
                 
 
                 # Esperar un segundo antes de enviar el siguiente conjunto de datos
-                time.sleep(1)
+                time.sleep(0.02)
 
         except Exception as e:
             print(f"Error durante la transmisión de datos: {e}")
