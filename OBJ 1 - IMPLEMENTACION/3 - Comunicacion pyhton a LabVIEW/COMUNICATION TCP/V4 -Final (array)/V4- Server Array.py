@@ -1,3 +1,6 @@
+# TCP server 
+
+
 import socket
 import struct
 import random
@@ -6,7 +9,7 @@ import time
 # Configuración del servidor
 HOST = 'localhost'
 PORT = 6340
-BLOCK_SIZE=10
+BLOCK_SIZE=25
 
 def start_server():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
