@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 # Abre el video
-video_path = '18-10-24_15-27-20_VIDEO_OJO_UX.avi'
+video_path = '18-10-24_15-25-20_VIDEO_OJO_UX.avi'
 cap = cv2.VideoCapture(video_path)
 
 # Verifica si el video fue cargado correctamente
