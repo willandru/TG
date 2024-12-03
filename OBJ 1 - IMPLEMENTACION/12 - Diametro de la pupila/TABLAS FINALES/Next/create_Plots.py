@@ -4,28 +4,32 @@ import matplotlib.pyplot as plt
 # List of files to process
 files = ["diameters_U1.csv", "diameters_U2.csv", "diameters_U3.csv", "diameters_U4.csv"]
 
-for file in files:
+# Create a 2x2 subplot figure
+fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+
+# Flatten the axes array for easier indexing
+axes = axes.flatten()
+
+# Loop through files and plot in each subplot
+for i, file in enumerate(files):
     # Read the current file
     df = pd.read_csv(file)
     
     # Use the row index as the X-axis values
     x_values = range(len(df))  # Generate a range from 0 to the number of rows
     
-    # Plot a horizontal line for the Moda_Diameters
-    plt.figure(figsize=(10, 5))
-    plt.hlines(y=df['Moda_Diameters'].iloc[0], xmin=min(x_values), xmax=max(x_values), colors='blue', label='Moda')
+    # Scatter plot for the current file
+    axes[i].scatter(x_values, df['Moda_Diameters'], alpha=0.7)
+    axes[i].set_title(f"Diámetros U{i+1}")  # Title with file-specific name
+    axes[i].set_xlabel("Tiempo (minutos)")
+    axes[i].set_ylabel("Moda (Diámetro)")
+    axes[i].grid(True)
 
-    # Configure plot
-    plt.title(f"Moda vs. Row Index - {file}")
-    plt.xlabel("Row Index")
-    plt.ylabel("Moda (Diameter)")
-    plt.grid(True)
-    plt.legend()
-    
-    # Save the plot
-    output_file = file.replace('.csv', '_horizontal_line_plot_by_row.png')
-    plt.savefig(output_file)
-    plt.close()
-    print(f"Horizontal line plot generated: {output_file}")
+# Adjust layout to prevent overlapping
+plt.tight_layout()
 
-print("All plots have been generated.")
+# Save the complete figure
+output_file = "matrix_scatter_plot_by_row.png"
+plt.savefig(output_file)
+plt.close()
+print(f"Matrix scatter plot generated: {output_file}")
